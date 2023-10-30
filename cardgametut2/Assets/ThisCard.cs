@@ -26,6 +26,9 @@ public class ThisCard : MonoBehaviour
 
     public Image frame;
 
+    public bool cardBack;
+    public static bool staticCardBack;
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,5 +75,7 @@ public class ThisCard : MonoBehaviour
         {
             frame.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
+
+        staticCardBack = cardBack;
     }
 }
