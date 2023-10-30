@@ -210,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 5287448306144210580, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6548727987383420739, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
       propertyPath: thisId
       value: 1
@@ -226,6 +230,10 @@ PrefabInstance:
       propertyPath: powerText
       value: 
       objectReference: {fileID: 1224827427}
+    - target: {fileID: 6548727987383420739, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
+      propertyPath: thatImage
+      value: 
+      objectReference: {fileID: 389458122}
     - target: {fileID: 6548727987383420739, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
       propertyPath: descriptionText
       value: 
@@ -320,6 +328,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7889250705482191948, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
   m_PrefabInstance: {fileID: 157401359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &389458122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5287448306144210580, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
+  m_PrefabInstance: {fileID: 157401359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
