@@ -169,17 +169,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCard:
-  - {fileID: 0}
-  thisId: 0
+  - id: 0
+    cardName: 
+    cost: 0
+    power: 0
+    cardDescription: 
+    thisImage: {fileID: 0}
+    color: 
+  thisId: 1
   id: 0
   cardName: 
   cost: 0
   power: 0
   cardDescription: 
-  nameText: {fileID: 0}
-  costText: {fileID: 0}
-  powerText: {fileID: 0}
-  descriptionText: {fileID: 0}
+  nameText: {fileID: 2855763240922074948}
+  costText: {fileID: 8647475073988714838}
+  powerText: {fileID: 2120412648022219562}
+  descriptionText: {fileID: 2509976544205955177}
+  thisSprite: {fileID: 0}
+  thatImage: {fileID: 5287448306144210580}
+  frame: {fileID: 1890704586652122111}
 --- !u!1 &1103680781308167496
 GameObject:
   m_ObjectHideFlags: 0
