@@ -27,20 +27,31 @@ public class ThisCard : MonoBehaviour
     public Image frame;
 
     public bool cardBack;
-    //public static bool staticCardBack;
-
     public GameObject cardBackO;
+
+    public GameObject Hand;
+
+    public int numberOfCardsInDeck;
 
 
     // Start is called before the first frame update
     void Start()
     {
         thisCard[0] = CardDataBase.cardList[thisId];
+
+        Hand = GameObject.Find("Hand");
+
+        numberOfCardsInDeck = PlayerDeck.deckSize;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(this.transform.parent == Hand.transform.parent)
+        {
+            cardBack = false;
+        }
+
         //all in start?
         id = thisCard[0].id;
         cardName = thisCard[0].cardName;
@@ -83,7 +94,14 @@ public class ThisCard : MonoBehaviour
        
          cardBackO.SetActive(cardBack);
        
-
+        if(this.tag == "HandCard")
+        {
+            thisCard[0] = PlayerDeck.staticDeck[numberOfCardsInDeck - 1];
+            numberOfCardsInDeck -= 1;
+            PlayerDeck.deckSize -= 1;
+            cardBack = false;
+            this.tag = "Untagged";
+        }
 
     }
 }
