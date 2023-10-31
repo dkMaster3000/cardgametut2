@@ -27,7 +27,9 @@ public class ThisCard : MonoBehaviour
     public Image frame;
 
     public bool cardBack;
-    public static bool staticCardBack;
+    //public static bool staticCardBack;
+
+    public GameObject cardBackO;
 
 
     // Start is called before the first frame update
@@ -39,6 +41,7 @@ public class ThisCard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //all in start?
         id = thisCard[0].id;
         cardName = thisCard[0].cardName;
         cost = thisCard[0].cost;
@@ -53,6 +56,7 @@ public class ThisCard : MonoBehaviour
         descriptionText.text = " " + cardDescription;
 
         thatImage.sprite  = thisSprite;
+
 
         if (thisCard[0].color == "Red")
         {
@@ -76,6 +80,10 @@ public class ThisCard : MonoBehaviour
             frame.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
 
-        staticCardBack = cardBack;
+       
+         cardBackO.SetActive(cardBack);
+       
+
+
     }
 }
