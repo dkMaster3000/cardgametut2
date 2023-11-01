@@ -15,10 +15,14 @@ public class TurnSystem : MonoBehaviour
     public int currentMana;
     public Text manaText;
 
+    public PlayerDeck PlayerDeck;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
+
         isYourTurn = true;
         yourTurn = 1;
         opponentTurn = 0;
@@ -58,6 +62,9 @@ public class TurnSystem : MonoBehaviour
 
             maxMana += 1;
             currentMana = maxMana;
+
+            PlayerDeck.DrawCards(1);
+
         } else
         {
             opponentTurn += 1;
