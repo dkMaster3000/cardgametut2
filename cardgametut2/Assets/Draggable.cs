@@ -13,17 +13,18 @@ public class Draggable : MonoBehaviour
 
     private bool isDragging = false;
     private bool isOverDropZone = false;
-    private bool isDraggable = true;
-
 
     private GameObject dropZone;
     private GameObject startParent;
     private Vector2 startPosition;
 
+    private ThisCard ThisCard;
+
     private void Start()
     {
         Canvas = GameObject.Find("Canvas");
-        TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>(); ;
+        TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
+        ThisCard = gameObject.GetComponent<ThisCard>();
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class Draggable : MonoBehaviour
 
     public void StartDrag()
     {
-        if (!isDraggable) return;
+        if (!ThisCard.CanBeSummoned()) return;
         startParent = transform.parent.gameObject;
         startPosition = transform.position;
         isDragging = true;;
@@ -58,12 +59,12 @@ public class Draggable : MonoBehaviour
 
     public void EndDrag()
     {
-        if (!isDraggable) return;
+        if (!ThisCard.CanBeSummoned()) return;
         isDragging = false;
         if (isOverDropZone && TurnSystem.isYourTurn)
         {
             transform.SetParent(dropZone.transform, false);
-            isDraggable = false;
+            ThisCard.Summon();
         }
         else  
         {

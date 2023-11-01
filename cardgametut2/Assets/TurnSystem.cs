@@ -40,6 +40,11 @@ public class TurnSystem : MonoBehaviour
             turnText.text = "Opponent Turn";
         }
 
+        UpdateManaText();
+    }
+
+    public void UpdateManaText()
+    {
         manaText.text = currentMana + "/" + maxMana;
     }
 

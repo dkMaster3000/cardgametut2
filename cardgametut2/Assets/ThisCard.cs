@@ -33,6 +33,11 @@ public class ThisCard : MonoBehaviour
 
     public int numberOfCardsInDeck;
 
+    public bool summoned;
+    public GameObject battleZone;
+
+    public TurnSystem TurnSystem;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,10 @@ public class ThisCard : MonoBehaviour
         Hand = GameObject.Find("Hand");
 
         numberOfCardsInDeck = PlayerDeck.deckSize;
+        cardBack = false;
+        summoned = false;
+
+        TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
     }
 
     // Update is called once per frame
@@ -92,7 +101,7 @@ public class ThisCard : MonoBehaviour
         }
 
        
-         cardBackO.SetActive(cardBack);
+         
        
         if(this.tag == "HandCard")
         {
@@ -101,7 +110,27 @@ public class ThisCard : MonoBehaviour
             PlayerDeck.deckSize -= 1;
             cardBack = false;
             this.tag = "Untagged";
+            cardBackO.SetActive(cardBack);
         }
 
+    }
+
+    public bool CanBeSummoned()
+    {
+        if (TurnSystem.currentMana >= cost && summoned == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void Summon()
+    {
+        TurnSystem.currentMana -= cost;
+        TurnSystem.UpdateManaText();
+        summoned = true;
     }
 }
