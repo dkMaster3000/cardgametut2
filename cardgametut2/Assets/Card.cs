@@ -12,6 +12,9 @@ public class Card
     public int power;
     public string cardDescription;
 
+    public int drawXcards;
+    public int addXmaxMana;
+
     public Sprite thisImage;
 
     public string color;
@@ -21,14 +24,17 @@ public class Card
 
     }
 
-    public Card(int Id, string CardName, int Cost, int Power, string CardDescription, Sprite ThisImage, string Color)
+    public Card(int Id, string CardName, int Cost, int Power, string CardDescription, Sprite ThisImage, string Color, int DrawXcards, int AddXmaxMana)
     {
         id = Id;
         cardName = CardName;
         cost = Cost;
         power = Power;
         cardDescription = CardDescription;
-        
+        addXmaxMana = AddXmaxMana;
+
+        drawXcards = DrawXcards;
+
         thisImage = ThisImage;
 
         color = Color;

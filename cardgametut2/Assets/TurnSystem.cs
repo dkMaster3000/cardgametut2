@@ -65,4 +65,10 @@ public class TurnSystem : MonoBehaviour
 
         UpdateTurnText();
     }
+
+    public void IncreaseMaxMana(int x)
+    {
+        maxMana += x;
+        UpdateManaText();
+    }
 }

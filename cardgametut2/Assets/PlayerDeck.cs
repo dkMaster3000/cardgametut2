@@ -37,7 +37,7 @@ public class PlayerDeck : MonoBehaviour
             deck[i] = CardDataBase.cardList[x];
         }
 
-        StartCoroutine(StartGame());
+        DrawCards(5);
     }
 
     // Update is called once per frame
@@ -62,6 +62,7 @@ public class PlayerDeck : MonoBehaviour
         {
             cardInDeck4.SetActive(false);
         }
+
     }
 
     IEnumerator Example()
@@ -72,16 +73,6 @@ public class PlayerDeck : MonoBehaviour
         foreach(GameObject Clone in Clones) 
         { 
             Destroy(Clone);
-        }
-    }
-    
-    IEnumerator StartGame()
-    {
-       for(int i = 0; i < 5 ; i++)
-        {
-            yield return new WaitForSeconds(0.5f);
-            Instantiate(CardToHand, transform.position, transform.rotation);
-
         }
     }
 
@@ -98,4 +89,19 @@ public class PlayerDeck : MonoBehaviour
         StartCoroutine(Example());
     }
 
+    public void DrawCards(int cardsToDraw)
+    {
+        StartCoroutine(Draw(cardsToDraw));
+    }
+
+
+    IEnumerator Draw(int x)
+    {
+        for (int i = 0; i < x; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Instantiate(CardToHand, transform.position, transform.rotation);
+
+        }
+    }
 }
