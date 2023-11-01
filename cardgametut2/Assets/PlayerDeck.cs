@@ -79,7 +79,7 @@ public class PlayerDeck : MonoBehaviour
     {
        for(int i = 0; i < 5 ; i++)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             Instantiate(CardToHand, transform.position, transform.rotation);
 
         }
