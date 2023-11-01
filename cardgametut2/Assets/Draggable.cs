@@ -51,7 +51,7 @@ public class Draggable : MonoBehaviour
 
     public void StartDrag()
     {
-        if (!ThisCard.CanBeSummoned()) return;
+        if (!ThisCard.CanBeSummoned() || ThisCard.summoned) return;
         startParent = transform.parent.gameObject;
         startPosition = transform.position;
         isDragging = true;;
@@ -59,7 +59,7 @@ public class Draggable : MonoBehaviour
 
     public void EndDrag()
     {
-        if (!ThisCard.CanBeSummoned()) return;
+        if (!ThisCard.CanBeSummoned() || ThisCard.summoned) return;
         isDragging = false;
         if (isOverDropZone && TurnSystem.isYourTurn)
         {

@@ -40,6 +40,26 @@ public class ThisCard : MonoBehaviour
     public int drawXcards;
     public int addXmaxMana;
 
+    //new
+
+    
+    //public GameObject Target;
+    public GameObject Opponent;
+    public PlayerHP OpponentHP;
+
+    public bool sleep;
+    public bool canAttack;
+
+    public static bool staticTargeting;
+    public static bool staticTargetingOpponent;
+
+    public bool targeting;
+    public bool targetingOpponent;
+
+    public bool onlyThisCardAttack;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +74,7 @@ public class ThisCard : MonoBehaviour
 
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
         PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
+        OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
 
         if (this.tag == "HandCard")
         {
@@ -103,6 +124,48 @@ public class ThisCard : MonoBehaviour
         {
             frame.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
+
+        canAttack = false;
+        sleep = true;
+
+        Opponent = GameObject.Find("OpponentHP");
+        targeting = false;
+        targetingOpponent = false;
+
+    }
+
+    void Update()
+    {
+        //if(TurnSystem.isYourTurn == false && summoned == true)
+        //{
+        //    sleep = false;
+        //    canAttack = false;
+        //}
+
+        //if(TurnSystem.isYourTurn && sleep == false && canAttack == false)
+        //{
+        //    canAttack = true;
+        //} else
+        //{
+        //    canAttack=false;
+        //}
+
+        //targeting = staticTargeting;
+        //targetingOpponent = staticTargetingOpponent;
+
+        //if(targetingOpponent == true)
+        //{
+        //    Target = Opponent;
+        //}
+        //else
+        //{
+        //    Target = null;
+        //}
+
+        //if(targeting == true && targetingOpponent == true && onlyThisCardAttack == true)
+        //{
+        //    Attack();
+        //}
     }
 
     public bool CanBeSummoned()
@@ -127,5 +190,111 @@ public class ThisCard : MonoBehaviour
 
     }
 
-  
+    public void BeReady()
+    {
+        sleep = false;
+        canAttack = true;
+        UpdateOutline();
+    }
+
+    public void BeExhausted()
+    {
+        sleep = true;
+        canAttack = false;
+        UpdateOutline();
+
+    }
+
+    public void UpdateOutline()
+    {
+        gameObject.GetComponent<Outline>().enabled = canAttack;
+
+        if (targeting)
+        {
+            gameObject.GetComponent<Outline>().effectColor = Color.red;
+        } else
+        {
+            gameObject.GetComponent<Outline>().effectColor = Color.yellow;
+        }
+
+    }
+
+    //on initial drag
+    public void Targeting()
+    {
+        if (!summoned || !canAttack) return;
+        targeting = true;
+        UpdateOutline();
+    }
+
+    public void StopTargeting()
+    {
+        if (!summoned || !canAttack) return;
+        targeting = false;
+        UpdateOutline();
+    }
+
+    //on hover over OpponetHP
+    //public void UntargetOpponent()
+    //{
+    //    if(targeting == true)
+    //    {
+    //        Debug.Log("Untarget1");
+    //        targetingOpponent = false;
+    //    } 
+
+    //}
+
+    //public void TargetOpponent()
+    //{
+    //    if (targeting == true)
+    //    {
+    //        Debug.Log("Target1");
+    //        targetingOpponent = true;
+    //    }
+    //}
+
+    //on end drag
+    public void Attack()
+    {
+        if (canAttack == true)
+        {
+            
+                if (targetingOpponent)
+                {
+                    OpponentHP.currentHP -= power;                 
+                    canAttack = false;
+                    UpdateOutline();
+            }
+
+                //if (Target.name == "CardToHand(Clone)")
+                //{
+                //    canAttack = true;
+                //}    
+        }
+
+        targeting = false;
+    }
+
+
+
+    //public void StartAttack()
+    //{
+    //    staticTargeting = true;
+    //}
+
+    //public void StoptAttack()
+    //{
+    //    staticTargeting = false;
+    //}
+
+    //public void OneCardAttack()
+    //{
+    //    onlyThisCardAttack = true;
+    //}
+
+    //public void OneCardAttackStop()
+    //{
+    //    onlyThisCardAttack = false;
+    //}
 }

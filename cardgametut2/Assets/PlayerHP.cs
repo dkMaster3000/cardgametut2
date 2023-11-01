@@ -12,11 +12,14 @@ public class PlayerHP : MonoBehaviour
     public Text hpText;
     public Image Health;
 
-    public float waitTime = 30.0f;
+    public GameObject PlayArea;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayArea = GameObject.Find("PlayArea");
+
         maxHP = 20;
         currentHP = 20;
     }
@@ -26,5 +29,32 @@ public class PlayerHP : MonoBehaviour
     {
 
         hpText.text = currentHP + "/" + maxHP;
+    }
+
+    public void UntargetOpponent()
+    {
+        ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
+
+        foreach (ThisCard child in playedCards)
+        {
+            if (child.targeting)
+            {
+                child.targetingOpponent = false;
+            }
+        }
+
+    }
+
+    public void TargetOpponent()
+    {
+        ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
+      
+        foreach (ThisCard child in playedCards)
+        {
+           if (child.targeting)
+            {
+                child.targetingOpponent = true;
+            }
+        }
     }
 }

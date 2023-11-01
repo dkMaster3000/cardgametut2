@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: -174418085903366463}
   - component: {fileID: 3454320585389546860}
   - component: {fileID: -4818668714853560224}
+  - component: {fileID: -300151822173710946}
   m_Layer: 6
   m_Name: CardToHand
   m_TagString: HandCard
@@ -203,6 +204,13 @@ MonoBehaviour:
   PlayerDeck: {fileID: 0}
   drawXcards: 0
   addXmaxMana: 0
+  Opponent: {fileID: 0}
+  OpponentHP: {fileID: 0}
+  sleep: 0
+  canAttack: 0
+  targeting: 0
+  targetingOpponent: 0
+  onlyThisCardAttack: 0
 --- !u!114 &-4384560257917258832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +288,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 6548727987383420739}
+          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+          m_MethodName: Targeting
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 14
     callback:
       m_PersistentCalls:
@@ -287,6 +307,46 @@ MonoBehaviour:
         - m_Target: {fileID: -4805728513713870281}
           m_TargetAssemblyTypeName: Draggable, Assembly-CSharp
           m_MethodName: EndDrag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6548727987383420739}
+          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+          m_MethodName: StopTargeting
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6548727987383420739}
+          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+          m_MethodName: Attack
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 12
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6548727987383420739}
+          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+          m_MethodName: Targeting
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -368,6 +428,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &-300151822173710946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808656491525979790}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.91523826, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1103680781308167496
 GameObject:
   m_ObjectHideFlags: 0
