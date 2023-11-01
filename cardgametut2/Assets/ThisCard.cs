@@ -31,8 +31,6 @@ public class ThisCard : MonoBehaviour
 
     public GameObject Hand;
 
-    public int numberOfCardsInDeck;
-
     public bool summoned;
     public GameObject battleZone;
 
@@ -46,27 +44,25 @@ public class ThisCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //default
         thisCard[0] = CardDataBase.cardList[thisId];
 
         Hand = GameObject.Find("Hand");
 
-        numberOfCardsInDeck = PlayerDeck.deckSize;
         cardBack = false;
         summoned = false;
 
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
         PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(this.transform.parent == Hand.transform.parent)
+        if (this.tag == "HandCard")
         {
+            thisCard[0] = PlayerDeck.GetCard();
             cardBack = false;
+            this.tag = "Untagged";
+            cardBackO.SetActive(cardBack);
         }
 
-        //all in start?
         id = thisCard[0].id;
         cardName = thisCard[0].cardName;
         cost = thisCard[0].cost;
@@ -83,7 +79,7 @@ public class ThisCard : MonoBehaviour
         powerText.text = " " + power;
         descriptionText.text = " " + cardDescription;
 
-        thatImage.sprite  = thisSprite;
+        thatImage.sprite = thisSprite;
 
 
         if (thisCard[0].color == "Red")
@@ -107,17 +103,6 @@ public class ThisCard : MonoBehaviour
         {
             frame.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
- 
-        if(this.tag == "HandCard")
-        {
-            thisCard[0] = PlayerDeck.staticDeck[numberOfCardsInDeck - 1];
-            numberOfCardsInDeck -= 1;
-            PlayerDeck.deckSize -= 1;
-            cardBack = false;
-            this.tag = "Untagged";
-            cardBackO.SetActive(cardBack);
-        }
-
     }
 
     public bool CanBeSummoned()
@@ -134,7 +119,7 @@ public class ThisCard : MonoBehaviour
 
     public void Summon()
     {
-        TurnSystem.currentMana -= cost;
+        TurnSystem.currentMana -= cost; 
         TurnSystem.UpdateManaText();
         summoned = true;
         TurnSystem.IncreaseMaxMana(addXmaxMana);

@@ -1,16 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerDeck : MonoBehaviour
 {
 
     public List<Card> deck = new List<Card>();
     public List<Card> container = new List<Card>();
-    public static List<Card> staticDeck = new List<Card>();
 
     public int x;
-    public static int deckSize;
+    public int deckSize;
 
     public GameObject cardInDeck1;
     public GameObject cardInDeck2;
@@ -40,58 +41,10 @@ public class PlayerDeck : MonoBehaviour
         DrawCards(5);
     }
 
-    // Update is called once per frame
-    void Update()    
-    {
-
-        staticDeck = deck;
-
-        if (deckSize < 30)
-        {
-            cardInDeck1.SetActive(false);
-        }
-        if (deckSize < 20)
-        {
-            cardInDeck2.SetActive(false);
-        }
-        if (deckSize < 10)
-        {
-            cardInDeck3.SetActive(false);
-        }
-        if (deckSize < 5)
-        {
-            cardInDeck4.SetActive(false);
-        }
-
-    }
-
-    IEnumerator Example()
-    {
-        yield return new WaitForSeconds(1);
-        Clones = GameObject.FindGameObjectsWithTag("Clone");
-
-        foreach(GameObject Clone in Clones) 
-        { 
-            Destroy(Clone);
-        }
-    }
-
-    public void Shuffle()
-    {
-        for(int i = 0; i < deckSize;i++)
-        {
-            container[0] = deck[i];
-            int randomIndex = Random.Range(i, deckSize);
-            deck[i] = deck[randomIndex];
-            deck[randomIndex] = container[0];
-        }
-        Instantiate(CardBack, transform.position, transform.rotation);
-        StartCoroutine(Example());
-    }
-
     public void DrawCards(int cardsToDraw)
     {
         StartCoroutine(Draw(cardsToDraw));
+        UpdateDeckVisual();
     }
 
 
@@ -102,6 +55,62 @@ public class PlayerDeck : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             Instantiate(CardToHand, transform.position, transform.rotation);
 
+        }
+    }
+
+    public void UpdateDeckVisual()
+    {
+        if (deck.Count < 30)
+        {
+            cardInDeck1.SetActive(false);
+        }
+        if (deck.Count < 20)
+        {
+            cardInDeck2.SetActive(false);
+        }
+        if (deck.Count < 10)
+        {
+            cardInDeck3.SetActive(false);
+        }
+        if (deck.Count < 5)
+        {
+            cardInDeck4.SetActive(false);
+        }
+    }
+
+
+
+    public Card GetCard()
+    {
+        Card cardToReturn = deck[deck.Count - 1];
+        deck.RemoveAt(deck.Count - 1);
+        return cardToReturn;
+    }
+
+
+
+
+    public void Shuffle()
+    {
+        for (int i = 0; i < deckSize; i++)
+        {
+            container[0] = deck[i];
+            int randomIndex = Random.Range(i, deckSize);
+            deck[i] = deck[randomIndex];
+            deck[randomIndex] = container[0];
+        }
+        Instantiate(CardBack, transform.position, transform.rotation);
+        StartCoroutine(Example());
+    }
+
+    IEnumerator Example()
+    {
+        yield return new WaitForSeconds(1);
+        Clones = GameObject.FindGameObjectsWithTag("Clone");
+
+        foreach (GameObject Clone in Clones)
+        {
+            Destroy(Clone);
         }
     }
 }
