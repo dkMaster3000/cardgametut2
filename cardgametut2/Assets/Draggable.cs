@@ -31,60 +31,44 @@ public class Draggable : MonoBehaviour
     {
         if (isDragging)
         {
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y - 800);
+            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             transform.SetParent(Canvas.transform, false);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision Enter");
         isOverDropZone = true;
-            Debug.Log(collision.gameObject);
-            dropZone = collision.gameObject;
+        dropZone = collision.gameObject;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("Collision Exit");
         isOverDropZone = false;
         dropZone = null;
     }
 
     public void StartDrag()
     {
-        Debug.Log("Start StartDrag");
         if (!isDraggable) return;
         startParent = transform.parent.gameObject;
         startPosition = transform.position;
-        isDragging = true;
-        Debug.Log("End StartDrag");
+        isDragging = true;;
     }
 
     public void EndDrag()
     {
-        Debug.Log("Start EndDrag");
         if (!isDraggable) return;
         isDragging = false;
         if (isOverDropZone && TurnSystem.isYourTurn)
         {
-            Debug.Log(dropZone);
-            Debug.Log(dropZone.transform);
             transform.SetParent(dropZone.transform, false);
             isDraggable = false;
-            //PlayerManager.PlayCard(gameObject);
-            Debug.Log("OverDropZone");
-            Debug.Log(transform);
-            Debug.Log(transform.parent);
-            Debug.Log(transform.parent.name);
         }
         else  
         {
-            Debug.Log("in else");
             transform.position = startPosition;
             transform.SetParent(startParent.transform, false);
         }
-
-        Debug.Log("End EndDrag");
     }
 }
