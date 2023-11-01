@@ -52,7 +52,7 @@ public class PlayerDeck : MonoBehaviour
     {
         for (int i = 0; i < x; i++)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
             Instantiate(CardToHand, transform.position, transform.rotation);
 
         }
@@ -92,10 +92,10 @@ public class PlayerDeck : MonoBehaviour
 
     public void Shuffle()
     {
-        for (int i = 0; i < deckSize; i++)
+        for (int i = 0; i < deck.Count - 1; i++)
         {
             container[0] = deck[i];
-            int randomIndex = Random.Range(i, deckSize);
+            int randomIndex = Random.Range(i, deck.Count - 1);
             deck[i] = deck[randomIndex];
             deck[randomIndex] = container[0];
         }

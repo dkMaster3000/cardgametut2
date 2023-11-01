@@ -635,8 +635,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144, y: -58}
-  m_SizeDelta: {x: 1600, y: 300}
+  m_AnchoredPosition: {x: -160, y: -28}
+  m_SizeDelta: {x: 1600, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &396535431
 MonoBehaviour:
@@ -1335,6 +1335,7 @@ MonoBehaviour:
   maxMana: 0
   currentMana: 0
   manaText: {fileID: 160441809}
+  PlayerDeck: {fileID: 0}
 --- !u!1 &1635763952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,6 +1529,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1535,6 +1538,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1542,6 +1547,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1549,6 +1556,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1556,6 +1565,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1563,6 +1574,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1570,6 +1583,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1577,6 +1592,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1584,6 +1601,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1591,6 +1610,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1598,6 +1619,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1605,6 +1628,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1612,6 +1637,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1619,6 +1646,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1626,6 +1655,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1633,6 +1664,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1640,6 +1673,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1647,6 +1682,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1654,6 +1691,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1661,6 +1700,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1668,6 +1709,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1675,6 +1718,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1682,6 +1727,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1689,6 +1736,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1696,6 +1745,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1703,6 +1754,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1710,6 +1763,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1717,6 +1772,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1724,6 +1781,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1731,6 +1790,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1738,6 +1799,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1745,6 +1808,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1752,6 +1817,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1759,6 +1826,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1766,6 +1835,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1773,6 +1844,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1780,6 +1853,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1787,6 +1862,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1794,6 +1871,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -1801,6 +1880,8 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   container:
@@ -1809,15 +1890,18 @@ MonoBehaviour:
     cost: 0
     power: 0
     cardDescription: 
+    drawXcards: 0
+    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   x: 0
+  deckSize: 0
   cardInDeck1: {fileID: 1409225277}
   cardInDeck2: {fileID: 1749671484}
   cardInDeck3: {fileID: 615077074}
   cardInDeck4: {fileID: 365306929}
   CardToHand: {fileID: 808656491525979790, guid: 42c62999687a8284ba2f19480a1db3ce, type: 3}
-  CardBack: {fileID: 808656491525979790, guid: 19d1bde2d20e76e44b062b249b633f94, type: 3}
+  CardBack: {fileID: 808656491525979790, guid: a49a59925238dcc4aaff66d82d2e4eba, type: 3}
   Deck: {fileID: 1636465938}
   Clones: []
   Hand: {fileID: 97322934}
