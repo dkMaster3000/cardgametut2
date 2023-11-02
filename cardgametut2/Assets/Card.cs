@@ -20,12 +20,15 @@ public class Card
 
     public string color;
 
+    public CardAbillity cardAbillity;
+
+
     public Card()
     {
 
     }
 
-    public Card(int Id, string CardName, int Cost, int Power, int Health, string CardDescription, Sprite ThisImage, string Color, int DrawXcards, int AddXmaxMana)
+    public Card(int Id, string CardName, int Cost, int Power, int Health, string CardDescription, Sprite ThisImage, string Color, int DrawXcards, int AddXmaxMana, CardAbillity CardAbillity)
     {
         id = Id;
         cardName = CardName;
@@ -40,5 +43,7 @@ public class Card
         thisImage = ThisImage;
 
         color = Color;
+
+        cardAbillity = CardAbillity;
     }
 }

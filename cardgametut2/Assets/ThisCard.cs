@@ -17,6 +17,8 @@ public class ThisCard : MonoBehaviour
     public int health;
     public string cardDescription;
 
+    CardAbillity cardAbillity;
+
     public Text nameText;
     public Text costText;
     public Text powerText;
@@ -101,6 +103,7 @@ public class ThisCard : MonoBehaviour
             cardBackO.SetActive(cardBack);
 
             gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, Hand);
+
         }
 
         if (tag == "GraveYardCard")
@@ -121,6 +124,7 @@ public class ThisCard : MonoBehaviour
         power = thisCard[0].power;
         health = thisCard[0].health;
         cardDescription = thisCard[0].cardDescription;
+        cardAbillity = thisCard[0].cardAbillity;
 
         drawXcards = thisCard[0].drawXcards;
         addXmaxMana = thisCard[0].addXmaxMana;
@@ -185,7 +189,8 @@ public class ThisCard : MonoBehaviour
         TurnSystem.UpdateManaText();
         summoned = true;
         TurnSystem.IncreaseMaxMana(addXmaxMana);
-        PlayerDeck.DrawCards(drawXcards);
+        //PlayerDeck.DrawCards(drawXcards);
+        cardAbillity.Executable();
         UpdateOutline();
         HandManager.UpdateHand();
 
