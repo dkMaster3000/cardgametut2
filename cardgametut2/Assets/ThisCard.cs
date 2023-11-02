@@ -33,6 +33,13 @@ public class ThisCard : MonoBehaviour
 
     public GameObject Hand;
     public GameObject GraveYard;
+    public GameObject OpponentGraveYard;
+    public GraveYardScript PlayerGraveYardScript;
+    public GraveYardScript OpponentGraveYardScript;
+
+    public GameObject GraveYardViewer;
+    public GameObject CardDisplay;
+    public GYVManager GYVManager;
 
     public bool summoned;
     public GameObject battleZone;
@@ -68,6 +75,9 @@ public class ThisCard : MonoBehaviour
 
         Hand = GameObject.Find("Hand");
         GraveYard = GameObject.Find("GraveYard");
+        OpponentGraveYard = GameObject.Find("OpponentGraveYard");
+        GraveYardViewer = GameObject.Find("GraveYardViewer");
+        CardDisplay = GameObject.Find("CardDisplay");
 
         cardBack = false;
         summoned = false;
@@ -77,13 +87,30 @@ public class ThisCard : MonoBehaviour
         OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
         HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
+        PlayerGraveYardScript = GameObject.Find("GraveYard").GetComponent<GraveYardScript>();
+        OpponentGraveYardScript = GameObject.Find("OpponentGraveYard").GetComponent<GraveYardScript>();
 
-        if (this.tag == "HandCard")
+        //GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
+
+        if (tag == "HandCard")
         {
             thisCard[0] = PlayerDeck.GetCard();
             cardBack = false;
-            this.tag = "Untagged";
+            tag = "Untagged";
             cardBackO.SetActive(cardBack);
+
+            gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, Hand);
+        }
+
+        if (tag == "GraveYardCard")
+        {
+            GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
+            thisCard[0] = GYVManager.GetCard();
+            cardBack = false;
+            tag = "Untagged";
+            cardBackO.SetActive(cardBack);
+
+            gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, CardDisplay);
         }
 
         id = thisCard[0].id;
@@ -217,7 +244,18 @@ public class ThisCard : MonoBehaviour
 
     public void TriggerDeath()
     {
-        transform.SetParent(GraveYard.transform);
+        if (tag == "OpponentPlayedCard")
+        {
+            tag = "Untagged";        
+            OpponentGraveYardScript.BuryCard(thisCard[0]);
+            Destroy(gameObject);
+
+        } else
+        {
+            PlayerGraveYardScript.BuryCard(thisCard[0]);
+            Destroy(gameObject);
+
+        }
     }
 
     //Attack Handling

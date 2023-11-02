@@ -8,6 +8,7 @@ public class PlayerDeck : MonoBehaviour
 {
 
     public List<Card> deck = new List<Card>();
+    //for shuffle helper
     public List<Card> container = new List<Card>();
 
     public int x;

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Clone
   - HandCard
+  - PlayedCard
+  - OpponentPlayedCard
+  - GraveYardCard
   layers:
   - Default
   - TransparentFX
