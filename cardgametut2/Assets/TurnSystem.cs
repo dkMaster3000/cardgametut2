@@ -18,12 +18,17 @@ public class TurnSystem : MonoBehaviour
     public PlayerDeck PlayerDeck;
     public GameObject PlayArea;
 
+    //Summoning Outline
+    public HandManager HandManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
         PlayArea = GameObject.Find("PlayArea");
+
+        HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
 
         isYourTurn = true;
         yourTurn = 1;
@@ -95,6 +100,7 @@ public class TurnSystem : MonoBehaviour
         }
 
         UpdateTurnText();
+        HandManager.UpdateHand();
     }
 
 

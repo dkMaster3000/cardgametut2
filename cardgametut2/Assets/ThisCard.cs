@@ -51,6 +51,8 @@ public class ThisCard : MonoBehaviour
     public bool targeting;
     public bool targetingOpponent;
 
+    //Summoning Outline
+    public HandManager HandManager;
 
 
     // Start is called before the first frame update
@@ -67,6 +69,7 @@ public class ThisCard : MonoBehaviour
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
         PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
         OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
+        HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
 
         if (this.tag == "HandCard")
         {
@@ -122,16 +125,13 @@ public class ThisCard : MonoBehaviour
         targeting = false;
         targetingOpponent = false;
 
-    }
+        UpdateOutline();
 
-    void Update()
-    {
-    
     }
 
     public bool CanBeSummoned()
     {
-        if (TurnSystem.currentMana >= cost && summoned == false)
+        if (TurnSystem.isYourTurn && TurnSystem.currentMana >= cost && summoned == false)
         {
             return true;
         }
@@ -148,6 +148,8 @@ public class ThisCard : MonoBehaviour
         summoned = true;
         TurnSystem.IncreaseMaxMana(addXmaxMana);
         PlayerDeck.DrawCards(drawXcards);
+        UpdateOutline();
+        HandManager.UpdateHand();
 
     }
 
@@ -168,7 +170,8 @@ public class ThisCard : MonoBehaviour
 
     public void UpdateOutline()
     {
-        gameObject.GetComponent<Outline>().enabled = canAttack;
+        bool showOutline = canAttack;
+        gameObject.GetComponent<Outline>().enabled = true;
 
         if (targeting)
         {
@@ -177,6 +180,14 @@ public class ThisCard : MonoBehaviour
         {
             gameObject.GetComponent<Outline>().effectColor = Color.yellow;
         }
+
+        if(CanBeSummoned())
+        {
+            gameObject.GetComponent<Outline>().effectColor = Color.green;
+            showOutline = true;
+        } 
+
+        gameObject.GetComponent<Outline>().enabled = showOutline;
 
     }
 
