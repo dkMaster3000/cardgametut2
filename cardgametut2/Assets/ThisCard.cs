@@ -32,6 +32,7 @@ public class ThisCard : MonoBehaviour
     public GameObject cardBackO;
 
     public GameObject Hand;
+    public GameObject GraveYard;
 
     public bool summoned;
     public GameObject battleZone;
@@ -66,6 +67,7 @@ public class ThisCard : MonoBehaviour
         thisCard[0] = CardDataBase.cardList[thisId];
 
         Hand = GameObject.Find("Hand");
+        GraveYard = GameObject.Find("GraveYard");
 
         cardBack = false;
         summoned = false;
@@ -202,11 +204,20 @@ public class ThisCard : MonoBehaviour
     {
         health -= damage;
         UpdateHealth();
+        if (health <= 0)
+        {
+            TriggerDeath();
+        }
     }
 
     public void UpdateHealth()
     {
         healthText.text = " " + health;
+    }
+
+    public void TriggerDeath()
+    {
+        transform.SetParent(GraveYard.transform);
     }
 
     //Attack Handling
