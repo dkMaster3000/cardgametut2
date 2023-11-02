@@ -14,11 +14,13 @@ public class ThisCard : MonoBehaviour
     public string cardName;
     public int cost;
     public int power;
+    public int health;
     public string cardDescription;
 
     public Text nameText;
     public Text costText;
     public Text powerText;
+    public Text healthText;
     public Text descriptionText;
 
     public Sprite thisSprite;
@@ -83,6 +85,7 @@ public class ThisCard : MonoBehaviour
         cardName = thisCard[0].cardName;
         cost = thisCard[0].cost;
         power = thisCard[0].power;
+        health = thisCard[0].health;
         cardDescription = thisCard[0].cardDescription;
 
         drawXcards = thisCard[0].drawXcards;
@@ -93,6 +96,7 @@ public class ThisCard : MonoBehaviour
         nameText.text = " " + cardName;
         costText.text = " " + cost;
         powerText.text = " " + power;
+        healthText.text = " " + health;
         descriptionText.text = " " + cardDescription;
 
         thatImage.sprite = thisSprite;
