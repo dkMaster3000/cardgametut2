@@ -40,24 +40,16 @@ public class ThisCard : MonoBehaviour
     public int drawXcards;
     public int addXmaxMana;
 
-    //new
 
-    
-    //public GameObject Target;
-    public GameObject Opponent;
+
+    //Attack
+    public GameObject Target;
     public PlayerHP OpponentHP;
 
-    public bool sleep;
     public bool canAttack;
-
-    public static bool staticTargeting;
-    public static bool staticTargetingOpponent;
 
     public bool targeting;
     public bool targetingOpponent;
-
-    public bool onlyThisCardAttack;
-
 
 
 
@@ -126,9 +118,7 @@ public class ThisCard : MonoBehaviour
         }
 
         canAttack = false;
-        sleep = true;
 
-        Opponent = GameObject.Find("OpponentHP");
         targeting = false;
         targetingOpponent = false;
 
@@ -136,36 +126,7 @@ public class ThisCard : MonoBehaviour
 
     void Update()
     {
-        //if(TurnSystem.isYourTurn == false && summoned == true)
-        //{
-        //    sleep = false;
-        //    canAttack = false;
-        //}
-
-        //if(TurnSystem.isYourTurn && sleep == false && canAttack == false)
-        //{
-        //    canAttack = true;
-        //} else
-        //{
-        //    canAttack=false;
-        //}
-
-        //targeting = staticTargeting;
-        //targetingOpponent = staticTargetingOpponent;
-
-        //if(targetingOpponent == true)
-        //{
-        //    Target = Opponent;
-        //}
-        //else
-        //{
-        //    Target = null;
-        //}
-
-        //if(targeting == true && targetingOpponent == true && onlyThisCardAttack == true)
-        //{
-        //    Attack();
-        //}
+    
     }
 
     public bool CanBeSummoned()
@@ -190,16 +151,16 @@ public class ThisCard : MonoBehaviour
 
     }
 
+    //called in TurnSystem on EndTurn
     public void BeReady()
     {
-        sleep = false;
         canAttack = true;
         UpdateOutline();
     }
 
+    //called in TurnSystem on EndTurn
     public void BeExhausted()
     {
-        sleep = true;
         canAttack = false;
         UpdateOutline();
 
@@ -224,77 +185,35 @@ public class ThisCard : MonoBehaviour
     {
         if (!summoned || !canAttack) return;
         targeting = true;
+        GameState.targeting = true;
         UpdateOutline();
     }
 
+    //on end drag
     public void StopTargeting()
     {
         if (!summoned || !canAttack) return;
         targeting = false;
+        GameState.targeting = false;
         UpdateOutline();
     }
 
-    //on hover over OpponetHP
-    //public void UntargetOpponent()
-    //{
-    //    if(targeting == true)
-    //    {
-    //        Debug.Log("Untarget1");
-    //        targetingOpponent = false;
-    //    } 
-
-    //}
-
-    //public void TargetOpponent()
-    //{
-    //    if (targeting == true)
-    //    {
-    //        Debug.Log("Target1");
-    //        targetingOpponent = true;
-    //    }
-    //}
 
     //on end drag
     public void Attack()
     {
         if (canAttack == true)
         {
-            
-                if (targetingOpponent)
-                {
-                    OpponentHP.currentHP -= power;                 
-                    canAttack = false;
-                    UpdateOutline();
+
+            if(Target.name == "OpponentHP")
+            {
+                OpponentHP.DealDamage(power);
+                canAttack = false;
+
+                UpdateOutline();
             }
-
-                //if (Target.name == "CardToHand(Clone)")
-                //{
-                //    canAttack = true;
-                //}    
+              
         }
-
-        targeting = false;
     }
 
-
-
-    //public void StartAttack()
-    //{
-    //    staticTargeting = true;
-    //}
-
-    //public void StoptAttack()
-    //{
-    //    staticTargeting = false;
-    //}
-
-    //public void OneCardAttack()
-    //{
-    //    onlyThisCardAttack = true;
-    //}
-
-    //public void OneCardAttackStop()
-    //{
-    //    onlyThisCardAttack = false;
-    //}
 }

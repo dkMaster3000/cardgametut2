@@ -24,14 +24,37 @@ public class PlayerHP : MonoBehaviour
         currentHP = 20;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DealDamage(int damage)
     {
+        currentHP -= damage;
+        UpdateText();
+    }
 
+    public void UpdateText()
+    {
         hpText.text = currentHP + "/" + maxHP;
     }
 
     public void UntargetOpponent()
+    {
+        if (GameState.targeting)
+        {
+            GetTargetingCard().Target = null;
+        }
+
+
+    }
+
+    public void TargetOpponent()
+    {
+        if (GameState.targeting)
+        {
+            GetTargetingCard().Target = gameObject;
+        }
+        
+    }
+
+    public ThisCard GetTargetingCard()
     {
         ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
 
@@ -39,22 +62,10 @@ public class PlayerHP : MonoBehaviour
         {
             if (child.targeting)
             {
-                child.targetingOpponent = false;
+                return child;
             }
         }
 
-    }
-
-    public void TargetOpponent()
-    {
-        ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
-      
-        foreach (ThisCard child in playedCards)
-        {
-           if (child.targeting)
-            {
-                child.targetingOpponent = true;
-            }
-        }
+        return null;
     }
 }

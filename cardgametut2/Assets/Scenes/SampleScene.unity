@@ -518,6 +518,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253591314}
   m_CullTransparentMesh: 1
+--- !u!1 &315409851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 315409852}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &315409852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315409851}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 988.91724, y: 434.40045, z: -7.544482}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &328749192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1156,7 @@ MonoBehaviour:
   currentHP: 0
   hpText: {fileID: 1394334140}
   Health: {fileID: 877261744}
-  waitTime: 30
+  PlayArea: {fileID: 0}
 --- !u!114 &877261744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,8 +1212,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
-          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+        - m_Target: {fileID: 877261743}
+          m_TargetAssemblyTypeName: PlayerHP, Assembly-CSharp
           m_MethodName: TargetOpponent
           m_Mode: 1
           m_Arguments:
@@ -1197,8 +1228,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
-          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+        - m_Target: {fileID: 877261743}
+          m_TargetAssemblyTypeName: PlayerHP, Assembly-CSharp
           m_MethodName: UntargetOpponent
           m_Mode: 1
           m_Arguments:
@@ -1826,7 +1857,7 @@ MonoBehaviour:
   currentHP: 0
   hpText: {fileID: 839575708}
   Health: {fileID: 1489308487}
-  waitTime: 30
+  PlayArea: {fileID: 0}
 --- !u!1 &1567671157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,3 +2910,4 @@ SceneRoots:
   - {fileID: 1312193624}
   - {fileID: 1635763955}
   - {fileID: 1567671158}
+  - {fileID: 315409852}
