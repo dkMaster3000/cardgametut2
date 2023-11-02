@@ -34,14 +34,15 @@ public class ThisCard : MonoBehaviour
     public GameObject Hand;
     public GameObject GraveYard;
     public GameObject OpponentGraveYard;
-    public GraveYardScript PlayerGraveYardScript;
-    public GraveYardScript OpponentGraveYardScript;
+    public GraveYardManager PlayerGraveYardScript;
+    public GraveYardManager OpponentGraveYardScript;
 
     public GameObject GraveYardViewer;
     public GameObject CardDisplay;
     public GYVManager GYVManager;
 
     public bool summoned;
+    public bool dead;
     public GameObject battleZone;
 
     public TurnSystem TurnSystem;
@@ -79,18 +80,18 @@ public class ThisCard : MonoBehaviour
         GraveYardViewer = GameObject.Find("GraveYardViewer");
         CardDisplay = GameObject.Find("CardDisplay");
 
-        cardBack = false;
-        summoned = false;
-
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
         PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
         OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
         HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
-        PlayerGraveYardScript = GameObject.Find("GraveYard").GetComponent<GraveYardScript>();
-        OpponentGraveYardScript = GameObject.Find("OpponentGraveYard").GetComponent<GraveYardScript>();
+        PlayerGraveYardScript = GameObject.Find("GraveYard").GetComponent<GraveYardManager>();
+        OpponentGraveYardScript = GameObject.Find("OpponentGraveYard").GetComponent<GraveYardManager>();
 
-        //GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
+
+        cardBack = false;
+        summoned = false;
+        dead = false;
 
         if (tag == "HandCard")
         {
@@ -107,6 +108,7 @@ public class ThisCard : MonoBehaviour
             GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
             thisCard[0] = GYVManager.GetCard();
             cardBack = false;
+            dead = true;
             tag = "Untagged";
             cardBackO.SetActive(cardBack);
 
@@ -167,7 +169,7 @@ public class ThisCard : MonoBehaviour
 
     public bool CanBeSummoned()
     {
-        if (TurnSystem.isYourTurn && TurnSystem.currentMana >= cost && summoned == false)
+        if (TurnSystem.isYourTurn && TurnSystem.currentMana >= cost && summoned == false && dead == false)
         {
             return true;
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GraveYardScript : MonoBehaviour
+public class GraveYardManager : MonoBehaviour
 {
 
     public List<Card> graveYard = new List<Card>();
@@ -15,12 +15,6 @@ public class GraveYardScript : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log("GYManager cards: " + graveYard.Count);
-    }
-
     public void BuryCard(Card card)
     {
         graveYard.Add(card);
@@ -30,8 +24,7 @@ public class GraveYardScript : MonoBehaviour
     {
         GraveYardViewer.SetActive(true);
         GYVManager GYVManager = GraveYardViewer.GetComponent<GYVManager>();
-        GYVManager.SetNewCards(graveYard);
-        //GYVManager.cardsToDisplay = new List<Card>();
-        //GYVManager.cardsToDisplay = graveYard;
+
+        GYVManager.SetNewCards(graveYard, gameObject.name);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GYVManager : MonoBehaviour
 {
@@ -13,16 +14,12 @@ public class GYVManager : MonoBehaviour
 
     public GameObject CardDisplay;
 
+    public Text GYVTitle;
+
     // Start is called before the first frame update
     void Start()
     {
         CardDisplay = GameObject.Find("CardDisplay");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void CloseGYV()
@@ -43,11 +40,10 @@ public class GYVManager : MonoBehaviour
         return cardToReturn;
     }
 
-    public void SetNewCards(List<Card> CardsToDisplay)
+    public void SetNewCards(List<Card> CardsToDisplay, string Title)
     {
         cardsToDisplay = new List<Card>(CardsToDisplay);
-        //cardsToDisplay.Clear();
-        //cardsToDisplay = CardsToDisplay;
+        GYVTitle.text = Title;
         DisplayCards();
     }
 
