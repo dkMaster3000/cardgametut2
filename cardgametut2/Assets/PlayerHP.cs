@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,12 +14,14 @@ public class PlayerHP : MonoBehaviour
     public Image Health;
 
     public GameObject PlayArea;
+    public GameState GameState;
 
 
     // Start is called before the first frame update
     void Start()
     {
         PlayArea = GameObject.Find("PlayArea");
+        GameState = GameObject.Find("GameState").GetComponent<GameState>();
 
         maxHP = 20;
         currentHP = 20;
@@ -35,37 +38,15 @@ public class PlayerHP : MonoBehaviour
         hpText.text = currentHP + "/" + maxHP;
     }
 
-    public void UntargetOpponent()
-    {
-        if (GameState.targeting)
-        {
-            GetTargetingCard().Target = null;
-        }
-
-
-    }
-
     public void TargetOpponent()
     {
-        if (GameState.targeting)
-        {
-            GetTargetingCard().Target = gameObject;
-        }
-        
+        GameState.LockTarget(gameObject);
     }
 
-    public ThisCard GetTargetingCard()
+    public void UntargetOpponent()
     {
-        ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
-
-        foreach (ThisCard child in playedCards)
-        {
-            if (child.targeting)
-            {
-                return child;
-            }
-        }
-
-        return null;
+        GameState.LockTarget(null);
     }
+
+
 }

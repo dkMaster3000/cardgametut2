@@ -47,11 +47,13 @@ public class ThisCard : MonoBehaviour
     //Attack
     public GameObject Target;
     public PlayerHP OpponentHP;
+    public GameState GameState;
 
     public bool canAttack;
 
     public bool targeting;
     public bool targetingOpponent;
+
 
     //Summoning Outline
     public HandManager HandManager;
@@ -72,6 +74,7 @@ public class ThisCard : MonoBehaviour
         PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
         OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
         HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
+        GameState = GameObject.Find("GameState").GetComponent<GameState>();
 
         if (this.tag == "HandCard")
         {
@@ -195,6 +198,19 @@ public class ThisCard : MonoBehaviour
 
     }
 
+    public void GetDamage(int damage)
+    {
+        health -= damage;
+        UpdateHealth();
+    }
+
+    public void UpdateHealth()
+    {
+        healthText.text = " " + health;
+    }
+
+    //Attack Handling
+
     //on initial drag
     public void Targeting()
     {
@@ -219,15 +235,44 @@ public class ThisCard : MonoBehaviour
     {
         if (canAttack == true)
         {
-
-            if(Target.name == "OpponentHP")
+            if(Target != null)
             {
-                OpponentHP.DealDamage(power);
-                canAttack = false;
+                if (Target.name == "OpponentHP")
+                {
+                    OpponentHP.DealDamage(power);
+                }
 
+                if (Target.name == "CardToHand(Clone)")
+                {
+                    ThisCard targetCard = Target.GetComponent<ThisCard>();
+                    targetCard.GetDamage(power);
+                    GetDamage(targetCard.power);
+                }
+
+                canAttack = false;
                 UpdateOutline();
             }
+
               
+        }
+    }
+
+    //on pointer enter
+    public void TargetCard()
+    {
+        if(transform.parent.name == "OpponentPlayArea")
+        {
+            GameState.LockTarget(gameObject);
+        }
+        
+    }
+
+    //on pointer exit
+    public void UntargetCard()
+    {
+        if (transform.parent.name == "OpponentPlayArea")
+        {
+            GameState.LockTarget(null);
         }
     }
 
