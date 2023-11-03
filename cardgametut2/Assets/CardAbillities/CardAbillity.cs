@@ -15,6 +15,6 @@ public abstract class CardAbillity
         descriptionText = DescriptionText;
     }
 
-    public abstract void Executable();
+    public abstract void Executable(GameObject gameObjectToInteract);
 
 }

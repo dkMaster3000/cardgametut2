@@ -10,7 +10,7 @@ public class CACharge : CardAbillity
        
     }
 
-    public override void Executable()
+    public override void Executable(GameObject gameObjectToInteract)
     {
         
     }

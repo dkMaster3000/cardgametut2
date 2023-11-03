@@ -16,9 +16,9 @@ public class CAHealPlayer : CardAbillity
         healAmount = HealAmount;
     }
 
-    public override void Executable()
+    public override void Executable(GameObject gameObjectToInteract)
     {
-        PlayerHP = GameObject.Find("HP").GetComponent<PlayerHP>();
+        PlayerHP = gameObjectToInteract.GetComponent<PlayerHP>();
         PlayerHP.Heal(healAmount);
     }
 }

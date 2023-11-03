@@ -16,9 +16,9 @@ public class CADraw : CardAbillity
         drawXcards = DrawXcards;
     }
 
-    public override void Executable()
+    public override void Executable(GameObject gameObjectToInteract)
     {
-        PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
+        PlayerDeck = gameObjectToInteract.GetComponent<PlayerDeck>();
         PlayerDeck.DrawCards(drawXcards);
     }
 }

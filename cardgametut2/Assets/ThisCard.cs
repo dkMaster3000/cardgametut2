@@ -45,14 +45,19 @@ public class ThisCard : MonoBehaviour
     public GraveYardManager OpponentGraveYardManager;
     public GYVManager GYVManager;
 
+    public GameObject ManaObject;
     public ManaManager ManaManager;
 
     public TurnSystem TurnSystem;
 
+    public GameObject HPObject;
+    public PlayerHP OpponentHP;
+
+    public GameObject Deck;
 
     //Attack
     public GameObject Target;
-    public PlayerHP OpponentHP;
+
     public GameState GameState;
 
     public bool canAttack;
@@ -92,13 +97,19 @@ public class ThisCard : MonoBehaviour
 
         if(isPlayerCard)
         {
-            ManaManager = GameObject.Find("PlayerMana").GetComponent<ManaManager>();
+            ManaObject = GameObject.Find("PlayerMana");
+            HPObject = GameObject.Find("PlayerHP");
+            Deck = GameObject.Find("DeckArea");
         } else
         {
-            ManaManager = GameObject.Find("OpponentMana").GetComponent<ManaManager>();
+            ManaObject = GameObject.Find("OpponentMana");
+            HPObject = GameObject.Find("OpponentHP");
+            Deck = GameObject.Find("OpponentDeckArea");
+           
         }
+        ManaManager = ManaObject.GetComponent<ManaManager>();
 
-        if(gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.OpponentHandCard))
+        if (gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.OpponentHandCard))
         {
             cardBack = true;
         }
@@ -130,12 +141,24 @@ public class ThisCard : MonoBehaviour
         {
             foreach (CardAbillity cardAbillity in cardAbillities)
             {
-                cardAbillity.Executable();
 
                 if(cardAbillity.abillityIdentfier == "charge")
                 {
                     canAttack = true;
                 }
+                if(cardAbillity.abillityIdentfier == "addMana")
+                {
+                    cardAbillity.Executable(ManaObject);
+                }
+                if (cardAbillity.abillityIdentfier == "healPlayer")
+                {
+                    cardAbillity.Executable(HPObject);
+                }
+                if (cardAbillity.abillityIdentfier == "drawCards")
+                {
+                    cardAbillity.Executable(Deck);
+                }
+
             }
         }
 

@@ -7,7 +7,7 @@ public class CAAddMana : CardAbillity
 {
     public int addXMana;
 
-    public TurnSystem TurnSystem;
+    public ManaManager ManaManager;
 
 
 
@@ -16,9 +16,10 @@ public class CAAddMana : CardAbillity
         addXMana = AddXMana;
     }
 
-    public override void Executable()
+    public override void Executable(GameObject gameObjectToInteract)
     {
-        TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
-        //TurnSystem.IncreaseMaxMana(addXMana);
+        ManaManager = gameObjectToInteract.GetComponent<ManaManager>();
+        ManaManager.IncreaseMaxMana(addXMana);
+
     }
 }
