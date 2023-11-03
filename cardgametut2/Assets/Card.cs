@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Card
 {
+    public int universalCardID = 0;
+
     public int id;
     public string cardName;
     public int cost;

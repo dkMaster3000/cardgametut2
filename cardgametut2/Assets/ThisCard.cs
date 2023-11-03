@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using static CardSpawner;
 
 public class ThisCard : MonoBehaviour
 {
@@ -31,22 +32,17 @@ public class ThisCard : MonoBehaviour
     public bool cardBack;
     public GameObject cardBackO;
 
+    public bool summoned;
+    public bool dead;
+
     public GameObject Hand;
     public GameObject GraveYard;
     public GameObject OpponentGraveYard;
-    public GraveYardManager PlayerGraveYardScript;
-    public GraveYardManager OpponentGraveYardScript;
-
-    public GameObject GraveYardViewer;
-    public GameObject CardDisplay;
+    public GraveYardManager PlayerGraveYardManager;
+    public GraveYardManager OpponentGraveYardManager;
     public GYVManager GYVManager;
 
-    public bool summoned;
-    public bool dead;
-    public GameObject battleZone;
-
     public TurnSystem TurnSystem;
-    public PlayerDeck PlayerDeck;
 
 
     //Attack
@@ -71,16 +67,13 @@ public class ThisCard : MonoBehaviour
         Hand = GameObject.Find("Hand");
         GraveYard = GameObject.Find("GraveYard");
         OpponentGraveYard = GameObject.Find("OpponentGraveYard");
-        GraveYardViewer = GameObject.Find("GraveYardViewer");
-        CardDisplay = GameObject.Find("CardDisplay");
 
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
-        PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
         OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
         HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
-        PlayerGraveYardScript = GameObject.Find("GraveYard").GetComponent<GraveYardManager>();
-        OpponentGraveYardScript = GameObject.Find("OpponentGraveYard").GetComponent<GraveYardManager>();
+        PlayerGraveYardManager = GameObject.Find("GraveYard").GetComponent<GraveYardManager>();
+        OpponentGraveYardManager = GameObject.Find("OpponentGraveYard").GetComponent<GraveYardManager>();
 
         cardBackO.SetActive(cardBack);
         UpdateOutline();
@@ -174,20 +167,20 @@ public class ThisCard : MonoBehaviour
     {
         if (tag == "OpponentPlayedCard")
         {
-            tag = "Untagged";        
-            OpponentGraveYardScript.BuryCard(cardData);
+            tag = "Untagged";
+            OpponentGraveYardManager.BuryCard(cardData);
             Destroy(gameObject);
 
         } else
         {
-            PlayerGraveYardScript.BuryCard(cardData);
+            PlayerGraveYardManager.BuryCard(cardData);
             Destroy(gameObject);
 
         }
     }
 
     //Attack Handling
-
+    //as attacker
     //on initial drag
     public void Targeting()
     {
@@ -234,6 +227,7 @@ public class ThisCard : MonoBehaviour
         }
     }
 
+    //as attack target
     //on pointer enter
     public void TargetCard()
     {
@@ -251,6 +245,28 @@ public class ThisCard : MonoBehaviour
         {
             GameState.LockTarget(null);
         }
+    }
+
+
+    //selection in GraveYard
+    //on mouseclick
+    public void Revive()
+    {
+        if(GameState.targetingGraveYard == true)
+        {
+            CardTags newCardTag = CardTags.PlayedCard;
+            gameObject.tag = CardSpawner.GetStringFromCardTags(newCardTag);
+            gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, CardSpawner.GetLocationFromCardTags(newCardTag));
+            summoned = true;
+
+            PlayerGraveYardManager.RemoveByUniversalCardID(cardData.universalCardID);
+
+            GameState.targetingGraveYard = false;
+            GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
+            GYVManager.CloseGYV();
+            
+        }
+
     }
 
 }

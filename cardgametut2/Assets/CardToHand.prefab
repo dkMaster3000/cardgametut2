@@ -172,14 +172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686538d50da5bb949be83f29d5f5c448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisCard:
-  - id: 0
+  cardData:
+    id: 0
     cardName: 
     cost: 0
     power: 0
     health: 0
     thisImage: {fileID: 0}
-    color: 
+    color: 0
   thisId: 1
   id: 0
   cardName: 
@@ -192,24 +192,19 @@ MonoBehaviour:
   powerText: {fileID: 2120412648022219562}
   healthText: {fileID: 7496716775119971112}
   descriptionText: {fileID: 2509976544205955177}
-  thisSprite: {fileID: 0}
   thatImage: {fileID: 5287448306144210580}
   frame: {fileID: 1890704586652122111}
   cardBack: 0
   cardBackO: {fileID: 70026265191025546}
+  summoned: 0
+  dead: 0
   Hand: {fileID: 0}
   GraveYard: {fileID: 0}
   OpponentGraveYard: {fileID: 0}
   PlayerGraveYardScript: {fileID: 0}
   OpponentGraveYardScript: {fileID: 0}
-  GraveYardViewer: {fileID: 0}
-  CardDisplay: {fileID: 0}
   GYVManager: {fileID: 0}
-  summoned: 0
-  dead: 0
-  battleZone: {fileID: 0}
   TurnSystem: {fileID: 0}
-  PlayerDeck: {fileID: 0}
   Target: {fileID: 0}
   OpponentHP: {fileID: 0}
   GameState: {fileID: 0}
@@ -371,6 +366,22 @@ MonoBehaviour:
         - m_Target: {fileID: 6548727987383420739}
           m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
           m_MethodName: UntargetCard
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6548727987383420739}
+          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+          m_MethodName: Revive
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

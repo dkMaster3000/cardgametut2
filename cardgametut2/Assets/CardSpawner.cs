@@ -7,11 +7,12 @@ public class CardSpawner : MonoBehaviour
 {
     public static GameObject Hand;
     public static GameObject OpponentPlayArea;
+    public static GameObject PlayArea;
     public static GameObject CardDisplay;
 
     public enum CardTags
     {
-        OpponentPlayedCard, HandCard, GraveYardCard
+        OpponentPlayedCard, PlayedCard, HandCard, GraveYardCard
     }
 
     public enum CardColors
@@ -23,6 +24,7 @@ public class CardSpawner : MonoBehaviour
     {
         Hand = GameObject.Find("Hand");
         OpponentPlayArea = GameObject.Find("OpponentPlayArea");
+        PlayArea = GameObject.Find("PlayArea");
     }
 
     public static Card GetCard(List<Card> Deck)
@@ -131,6 +133,8 @@ public class CardSpawner : MonoBehaviour
                 return Hand;
             case CardTags.GraveYardCard:
                 return CardDisplay;
+            case CardTags.PlayedCard:
+                return PlayArea;
             default:
                 return Hand;
         }

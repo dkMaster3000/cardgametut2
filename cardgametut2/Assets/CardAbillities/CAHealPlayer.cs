@@ -11,7 +11,7 @@ public class CAHealPlayer : CardAbillity
 
 
 
-    public CAHealPlayer(int HealAmount, string Description) : base("drawCards", Description)
+    public CAHealPlayer(int HealAmount, string Description) : base("healPlayer", Description)
     {
         healAmount = HealAmount;
     }

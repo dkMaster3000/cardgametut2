@@ -35,8 +35,18 @@ public class PlayerDeck : MonoBehaviour
 
         for(int i = 0; i < deckSize; i++)
         {
-            x = Random.Range(1, 8);
-            deck[i] = CardDataBase.cardList[x];
+            x = Random.Range(1, CardDataBase.cardList.Count);
+            Card cardTemplate = CardDataBase.cardList[x];
+
+            //copy card from database
+            Card nextAddedCard = new Card(cardTemplate.id, cardTemplate.cardName, cardTemplate.cost, 
+                cardTemplate.power, cardTemplate.health, cardTemplate.thisImage, cardTemplate.color, cardTemplate.cardAbillities);
+
+            //give copied card universalID
+            GameState.universalCardID++;
+            nextAddedCard.universalCardID = GameState.universalCardID;     
+            
+            deck[i] = nextAddedCard;
         }
 
         DrawCards(5);

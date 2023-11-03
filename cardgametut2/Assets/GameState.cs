@@ -5,7 +5,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class GameState : MonoBehaviour
 {
+    public static int universalCardID = 0;
+
     public static bool targeting = false;
+    public static bool targetingGraveYard = false;
 
     public GameObject PlayArea;
 

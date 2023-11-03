@@ -20,6 +20,17 @@ public class GraveYardManager : MonoBehaviour
         graveYard.Add(card);
     }
 
+    public void RemoveByUniversalCardID(int universalCardID)
+    {
+        for (int i = 0; i < graveYard.Count; i++)
+        {
+            if (graveYard[i].universalCardID == universalCardID) 
+            { 
+                graveYard.RemoveAt(i);
+            }
+        }
+    }
+
     public void ViewGraveYard()
     {
         GraveYardViewer.SetActive(true);
