@@ -24,12 +24,25 @@ public class PlayerHP : MonoBehaviour
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
 
         maxHP = 20;
-        currentHP = 20;
+        currentHP = 13;
+
+        UpdateText();
     }
 
     public void DealDamage(int damage)
     {
         currentHP -= damage;
+        UpdateText();
+    }
+
+    public void Heal(int amount)
+    {
+        currentHP += amount;
+
+        if (currentHP > maxHP) 
+        {
+            currentHP = maxHP;
+        }
         UpdateText();
     }
 

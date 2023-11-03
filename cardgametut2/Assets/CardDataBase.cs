@@ -18,5 +18,6 @@ public class CardDataBase : MonoBehaviour
         cardList.Add(new Card(4, "Demon", 1, 1, 1, Resources.Load<Sprite>("1"), "Purple", new CardAbillity[] { new CADraw(1, "Draw 1 Card") }));
         cardList.Add(new Card(5, "Highelf", 2, 1, 1, Resources.Load<Sprite>("1"), "Green", new CardAbillity[] { new CADraw(2, "Draw 2 Cards"), new CAAddMana(1, "Add 1 max Mana") }));
         cardList.Add(new Card(6, "Oger", 6, 8, 8, Resources.Load<Sprite>("1"), "Green", new CardAbillity[] { }));
+        cardList.Add(new Card(7, "Priest", 2, 2, 2, Resources.Load<Sprite>("1"), "Purple", new CardAbillity[] { new CAHealPlayer(5, "Heal 5 by Player") }));
     }
 }
