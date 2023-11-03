@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class MoveCard : MonoBehaviour
 {
@@ -19,6 +18,7 @@ public class MoveCard : MonoBehaviour
 
     public void MoveToPosition(GameObject card, GameObject position)
     {
+        //Debug.Log(position + " : " + position.name + " : " + position.transform);
         card.transform.SetParent(position.transform);
         card.transform.localScale = Vector3.one;
         card.transform.position = new Vector3(transform.position.x, transform.position.y, -48);

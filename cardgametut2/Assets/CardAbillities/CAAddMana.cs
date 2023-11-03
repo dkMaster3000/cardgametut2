@@ -19,6 +19,6 @@ public class CAAddMana : CardAbillity
     public override void Executable()
     {
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
-        TurnSystem.IncreaseMaxMana(addXMana);
+        //TurnSystem.IncreaseMaxMana(addXMana);
     }
 }

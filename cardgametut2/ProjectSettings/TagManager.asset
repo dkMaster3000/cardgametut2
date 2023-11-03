@@ -9,6 +9,10 @@ TagManager:
   - PlayedCard
   - OpponentPlayedCard
   - GraveYardCard
+  - OpponentMana
+  - PlayerMana
+  - OpponentDeck
+  - PlayerDeck
   layers:
   - Default
   - TransparentFX

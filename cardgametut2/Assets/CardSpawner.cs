@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class CardSpawner : MonoBehaviour
 {
-    public static GameObject Hand;
+    public static GameObject PlayerHand;
+    public static GameObject OpponentHand;
     public static GameObject OpponentPlayArea;
     public static GameObject PlayArea;
     public static GameObject CardDisplay;
 
     public enum CardTags
     {
-        OpponentPlayedCard, PlayedCard, HandCard, GraveYardCard
+        OpponentPlayedCard, PlayedCard, PlayerHandCard, OpponentHandCard, GraveYardCard
     }
 
     public enum CardColors
@@ -22,7 +23,8 @@ public class CardSpawner : MonoBehaviour
 
     void Start()
     {
-        Hand = GameObject.Find("Hand");
+        PlayerHand = GameObject.Find("PlayerHand");
+        OpponentHand = GameObject.Find("OpponentHand");
         OpponentPlayArea = GameObject.Find("OpponentPlayArea");
         PlayArea = GameObject.Find("PlayArea");
     }
@@ -112,8 +114,10 @@ public class CardSpawner : MonoBehaviour
         {
             case CardTags.OpponentPlayedCard:
                 return "OpponentPlayedCard";
-            case CardTags.HandCard:
-                return "HandCard";
+            case CardTags.PlayerHandCard:
+                return "PlayerHandCard";
+            case CardTags.OpponentHandCard:
+                return "OpponentHandCard";
             case CardTags.GraveYardCard:
                 return "GraveYardCard";
             default:
@@ -129,14 +133,16 @@ public class CardSpawner : MonoBehaviour
         {
             case CardTags.OpponentPlayedCard:
                 return OpponentPlayArea;
-            case CardTags.HandCard:
-                return Hand;
+            case CardTags.PlayerHandCard:
+                return PlayerHand;
+            case CardTags.OpponentHandCard:
+                return OpponentHand;
             case CardTags.GraveYardCard:
                 return CardDisplay;
             case CardTags.PlayedCard:
                 return PlayArea;
             default:
-                return Hand;
+                return PlayerHand;
         }
     }
 

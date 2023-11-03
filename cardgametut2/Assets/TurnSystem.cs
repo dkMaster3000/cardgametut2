@@ -6,17 +6,23 @@ using UnityEngine.UI;
 public class TurnSystem : MonoBehaviour
 {
 
-    public bool isYourTurn;
-    public int yourTurn;
+    public static bool isPlayerTurn;
+    public int playerTurn;
     public int opponentTurn;
     public Text turnText;
 
-    public int maxMana;
-    public int currentMana;
-    public Text manaText;
+    //public int maxMana;
+    //public int currentMana;
+    //public Text manaText;
 
     public PlayerDeck PlayerDeck;
+    public PlayerDeck OpponentDeck;
+
     public GameObject PlayArea;
+
+
+    public ManaManager PlayerManaManager;
+    public ManaManager OpponentManaManager;
 
     //Summoning Outline
     public HandManager HandManager;
@@ -26,23 +32,31 @@ public class TurnSystem : MonoBehaviour
     void Start()
     {
         PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
+        OpponentDeck = GameObject.Find("OpponentDeckArea").GetComponent<PlayerDeck>();
+
         PlayArea = GameObject.Find("PlayArea");
 
-        HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
+        HandManager = GameObject.Find("PlayerHand").GetComponent<HandManager>();
 
-        isYourTurn = true;
-        yourTurn = 1;
+        PlayerManaManager = GameObject.Find("PlayerMana").GetComponent<ManaManager>();
+        OpponentManaManager = GameObject.Find("OpponentMana").GetComponent<ManaManager>();
+
+        isPlayerTurn = true;
+        playerTurn = 1;
         opponentTurn = 0;
 
-        maxMana = 1;
-        currentMana = 1;
+        PlayerDeck.Initialise();
+        OpponentDeck.Initialise();
+
+        PlayerManaManager.Initialise(isPlayerTurn);
+        OpponentManaManager.Initialise(!isPlayerTurn);
 
         UpdateTurnText();
     }
 
     public void UpdateTurnText()
     {
-        if (isYourTurn == true)
+        if (isPlayerTurn == true)
         {
             turnText.text = "Your Turn";
         }
@@ -51,30 +65,29 @@ public class TurnSystem : MonoBehaviour
             turnText.text = "Opponent Turn";
         }
 
-        UpdateManaText();
+        //UpdateManaText();
     }
 
-    public void UpdateManaText()
-    {
-        manaText.text = currentMana + "/" + maxMana;
-    }
+    //public void UpdateManaText()
+    //{
+    //    manaText.text = currentMana + "/" + maxMana;
+    //}
 
-    public void IncreaseMaxMana(int x)
-    {
-        maxMana += x;
-        UpdateManaText();
-    }
+    //public void IncreaseMaxMana(int x)
+    //{
+    //    maxMana += x;
+    //    UpdateManaText();
+    //}
 
     public void EndTurn()
     {
-        isYourTurn = !isYourTurn;
+        isPlayerTurn = !isPlayerTurn;
 
-        if (isYourTurn)
+        if (isPlayerTurn)
         {
-            yourTurn += 1;
+            playerTurn += 1;
 
-            maxMana += 1;
-            currentMana = maxMana;
+            PlayerManaManager.StartTurn();
 
             PlayerDeck.DrawCards(1);
 
@@ -89,6 +102,8 @@ public class TurnSystem : MonoBehaviour
         } else
         {
             opponentTurn += 1;
+
+            OpponentManaManager.StartTurn();
 
             ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
 

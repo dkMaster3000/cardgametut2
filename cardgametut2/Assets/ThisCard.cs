@@ -35,8 +35,7 @@ public class ThisCard : MonoBehaviour
     public bool summoned;
     public bool dead;
 
-    public GameObject Hand;
-    public GameObject GraveYard;
+    public GameObject PlayerGraveYard;
     public GameObject OpponentGraveYard;
     public GraveYardManager PlayerGraveYardManager;
     public GraveYardManager OpponentGraveYardManager;
@@ -63,17 +62,15 @@ public class ThisCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        Hand = GameObject.Find("Hand");
-        GraveYard = GameObject.Find("GraveYard");
+        PlayerGraveYard = GameObject.Find("PlayerGraveYard");
         OpponentGraveYard = GameObject.Find("OpponentGraveYard");
 
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
         OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
-        HandManager = GameObject.Find("Hand").GetComponent<HandManager>();
+        HandManager = GameObject.Find("PlayerHand").GetComponent<HandManager>();
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
-        PlayerGraveYardManager = GameObject.Find("GraveYard").GetComponent<GraveYardManager>();
-        OpponentGraveYardManager = GameObject.Find("OpponentGraveYard").GetComponent<GraveYardManager>();
+        PlayerGraveYardManager = PlayerGraveYard.GetComponent<GraveYardManager>();
+        OpponentGraveYardManager = OpponentGraveYard.GetComponent<GraveYardManager>();
 
         cardBackO.SetActive(cardBack);
         UpdateOutline();
@@ -82,7 +79,8 @@ public class ThisCard : MonoBehaviour
 
     public bool CanBeSummoned()
     {
-        if (TurnSystem.isYourTurn && TurnSystem.currentMana >= cost && summoned == false && dead == false)
+        //if (TurnSystem.isPlayerTurn && TurnSystem.currentMana >= cost && summoned == false && dead == false)
+        if (TurnSystem.isPlayerTurn && summoned == false && dead == false)
         {
             return true;
         }
@@ -94,14 +92,19 @@ public class ThisCard : MonoBehaviour
 
     public void Summon()
     {
-        TurnSystem.currentMana -= cost; 
-        TurnSystem.UpdateManaText();
+        //TurnSystem.currentMana -= cost; 
+        //TurnSystem.UpdateManaText();
         summoned = true;
         if(cardAbillities.Length > 0)
         {
             foreach (CardAbillity cardAbillity in cardAbillities)
             {
                 cardAbillity.Executable();
+
+                if(cardAbillity.abillityIdentfier == "charge")
+                {
+                    canAttack = true;
+                }
             }
         }
 
@@ -258,6 +261,7 @@ public class ThisCard : MonoBehaviour
             gameObject.tag = CardSpawner.GetStringFromCardTags(newCardTag);
             gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, CardSpawner.GetLocationFromCardTags(newCardTag));
             summoned = true;
+            dead = false;
 
             PlayerGraveYardManager.RemoveByUniversalCardID(cardData.universalCardID);
 

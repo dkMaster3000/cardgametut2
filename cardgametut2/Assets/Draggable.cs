@@ -61,7 +61,7 @@ public class Draggable : MonoBehaviour
     {
         if (!ThisCard.CanBeSummoned() || ThisCard.summoned) return;
         isDragging = false;
-        if (isOverDropZone && TurnSystem.isYourTurn)
+        if (isOverDropZone && TurnSystem.isPlayerTurn)
         {
             transform.SetParent(dropZone.transform, false);
             ThisCard.Summon();

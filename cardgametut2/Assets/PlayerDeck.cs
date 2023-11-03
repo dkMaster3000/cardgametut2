@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 using static CardSpawner;
@@ -27,25 +25,30 @@ public class PlayerDeck : MonoBehaviour
     public GameObject CardBack;
     public GameObject[] Clones;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool isPlayerDeck = true;
+    public CardTags handCardTag = CardTags.PlayerHandCard;
+
+    public void Initialise()
     {
+        isPlayerDeck = gameObject.tag == "PlayerDeck";
+        handCardTag = isPlayerDeck ? CardTags.PlayerHandCard : CardTags.OpponentHandCard;
+
         x = 0;
         deckSize = 40;
 
-        for(int i = 0; i < deckSize; i++)
+        for (int i = 0; i < deckSize; i++)
         {
             x = Random.Range(1, CardDataBase.cardList.Count);
             Card cardTemplate = CardDataBase.cardList[x];
 
             //copy card from database
-            Card nextAddedCard = new Card(cardTemplate.id, cardTemplate.cardName, cardTemplate.cost, 
+            Card nextAddedCard = new Card(cardTemplate.id, cardTemplate.cardName, cardTemplate.cost,
                 cardTemplate.power, cardTemplate.health, cardTemplate.thisImage, cardTemplate.color, cardTemplate.cardAbillities);
 
             //give copied card universalID
             GameState.universalCardID++;
-            nextAddedCard.universalCardID = GameState.universalCardID;     
-            
+            nextAddedCard.universalCardID = GameState.universalCardID;
+
             deck[i] = nextAddedCard;
         }
 
@@ -55,8 +58,6 @@ public class PlayerDeck : MonoBehaviour
         CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
         CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
         CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
-
-
     }
 
     public void DrawCards(int cardsToDraw)
@@ -71,7 +72,7 @@ public class PlayerDeck : MonoBehaviour
         for (int i = 0; i < x; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.HandCard);
+            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), handCardTag);
 
         }
     }

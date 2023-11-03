@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class CardAbillity
 {
+    //better with enums but okay for now
     public string abillityIdentfier;
     public string descriptionText;
 

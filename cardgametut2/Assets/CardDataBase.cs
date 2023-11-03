@@ -20,5 +20,6 @@ public class CardDataBase : MonoBehaviour
         cardList.Add(new Card(6, "Oger", 6, 8, 8, Resources.Load<Sprite>("1"), CardSpawner.CardColors.Green, new CardAbillity[] { }));
         cardList.Add(new Card(7, "Priest", 2, 2, 2, Resources.Load<Sprite>("1"), CardSpawner.CardColors.Purple, new CardAbillity[] { new CAHealPlayer(5, "Heal 5 by Player") }));
         cardList.Add(new Card(8, "Reviver", 2, 1, 1, Resources.Load<Sprite>("1"), CardSpawner.CardColors.Blue, new CardAbillity[] { new CARevive("Revive 1 Monster")}));
+        cardList.Add(new Card(9, "Charger", 1, 1, 1, Resources.Load<Sprite>("1"), CardSpawner.CardColors.Red, new CardAbillity[] { new CACharge("Charge")}));
     }
 }
