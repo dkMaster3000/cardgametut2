@@ -17,7 +17,7 @@ public class ThisCard : MonoBehaviour
     public int health;
     public string cardDescription;
 
-    CardAbillity cardAbillity;
+    public CardAbillity[] cardAbillities;
 
     public Text nameText;
     public Text costText;
@@ -119,8 +119,19 @@ public class ThisCard : MonoBehaviour
         cost = thisCard[0].cost;
         power = thisCard[0].power;
         health = thisCard[0].health;
-        cardDescription = thisCard[0].cardAbillity.descriptionText;
-        cardAbillity = thisCard[0].cardAbillity;
+        cardAbillities = thisCard[0].cardAbillities;
+
+        //get describtion trough all cardabillities
+        if (cardAbillities.Length > 0)
+        {
+            foreach(CardAbillity cardAbillity in cardAbillities)
+            {
+                cardDescription += cardAbillity.descriptionText + "\n";
+            }
+        } else
+        {
+            cardDescription = "It's a Monster!";
+        }
 
         thisSprite = thisCard[0].thisImage;
 
@@ -181,7 +192,14 @@ public class ThisCard : MonoBehaviour
         TurnSystem.currentMana -= cost; 
         TurnSystem.UpdateManaText();
         summoned = true;
-        cardAbillity.Executable();
+        if(cardAbillities.Length > 0)
+        {
+            foreach (CardAbillity cardAbillity in cardAbillities)
+            {
+                cardAbillity.Executable();
+            }
+        }
+
         UpdateOutline();
         HandManager.UpdateHand();
 

@@ -178,9 +178,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   thisId: 1
@@ -201,12 +198,18 @@ MonoBehaviour:
   cardBack: 0
   cardBackO: {fileID: 70026265191025546}
   Hand: {fileID: 0}
+  GraveYard: {fileID: 0}
+  OpponentGraveYard: {fileID: 0}
+  PlayerGraveYardScript: {fileID: 0}
+  OpponentGraveYardScript: {fileID: 0}
+  GraveYardViewer: {fileID: 0}
+  CardDisplay: {fileID: 0}
+  GYVManager: {fileID: 0}
   summoned: 0
+  dead: 0
   battleZone: {fileID: 0}
   TurnSystem: {fileID: 0}
   PlayerDeck: {fileID: 0}
-  drawXcards: 0
-  addXmaxMana: 0
   Target: {fileID: 0}
   OpponentHP: {fileID: 0}
   GameState: {fileID: 0}
@@ -246,8 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ba82190826f3f4580e2bef18e09894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hand: {fileID: 0}
-  It: {fileID: 808656491525979790}
 --- !u!114 &-4805728513713870281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,10 +1155,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 10
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 7
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0

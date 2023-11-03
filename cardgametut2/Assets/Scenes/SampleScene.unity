@@ -860,6 +860,10 @@ PrefabInstance:
       value: OpponentPlayedCard
       objectReference: {fileID: 0}
     - target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
+      propertyPath: thisId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
       propertyPath: summoned
       value: 1
       objectReference: {fileID: 0}
@@ -2200,6 +2204,10 @@ PrefabInstance:
       value: OpponentPlayedCard
       objectReference: {fileID: 0}
     - target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
+      propertyPath: thisId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
       propertyPath: summoned
       value: 1
       objectReference: {fileID: 0}
@@ -2880,6 +2888,10 @@ PrefabInstance:
     - target: {fileID: 808656491525979790, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
       propertyPath: m_TagString
       value: OpponentPlayedCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
+      propertyPath: thisId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6548727987383420739, guid: bde8e2c6e79db1442a17467c4c40f797, type: 3}
       propertyPath: summoned
@@ -3566,9 +3578,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3576,9 +3585,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3586,9 +3592,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3596,9 +3599,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3606,9 +3606,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3616,9 +3613,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3626,9 +3620,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3636,9 +3627,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3646,9 +3634,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3656,9 +3641,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3666,9 +3648,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3676,9 +3655,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3686,9 +3662,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3696,9 +3669,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3706,9 +3676,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3716,9 +3683,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3726,9 +3690,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3736,9 +3697,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3746,9 +3704,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3756,9 +3711,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3766,9 +3718,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3776,9 +3725,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3786,9 +3732,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3796,9 +3739,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3806,9 +3746,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3816,9 +3753,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3826,9 +3760,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3836,9 +3767,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3846,9 +3774,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3856,9 +3781,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3866,9 +3788,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3876,9 +3795,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3886,9 +3802,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3896,9 +3809,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3906,9 +3816,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3916,9 +3823,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3926,9 +3830,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3936,9 +3837,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3946,9 +3844,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   - id: 0
@@ -3956,9 +3851,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   container:
@@ -3967,9 +3859,6 @@ MonoBehaviour:
     cost: 0
     power: 0
     health: 0
-    cardDescription: 
-    drawXcards: 0
-    addXmaxMana: 0
     thisImage: {fileID: 0}
     color: 
   x: 0

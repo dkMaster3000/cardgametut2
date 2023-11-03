@@ -16,7 +16,9 @@ public class Card
 
     public string color;
 
-    public CardAbillity cardAbillity;
+    //public CardAbillity cardAbillity;
+
+    public CardAbillity[] cardAbillities;
 
 
     public Card()
@@ -24,7 +26,7 @@ public class Card
 
     }
 
-    public Card(int Id, string CardName, int Cost, int Power, int Health, Sprite ThisImage, string Color, CardAbillity CardAbillity)
+    public Card(int Id, string CardName, int Cost, int Power, int Health, Sprite ThisImage, string Color, CardAbillity[] CardAbillities)
     {
         id = Id;
         cardName = CardName;
@@ -37,6 +39,6 @@ public class Card
 
         color = Color;
 
-        cardAbillity = CardAbillity;
+        cardAbillities = CardAbillities;
     }
 }

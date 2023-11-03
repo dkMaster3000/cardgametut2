@@ -35,7 +35,7 @@ public class PlayerDeck : MonoBehaviour
 
         for(int i = 0; i < deckSize; i++)
         {
-            x = Random.Range(1, 5);
+            x = Random.Range(1, 7);
             deck[i] = CardDataBase.cardList[x];
         }
 
@@ -59,6 +59,7 @@ public class PlayerDeck : MonoBehaviour
         }
     }
 
+    //has to be reworked if deck size increases
     public void UpdateDeckVisual()
     {
         if (deck.Count < 30)
