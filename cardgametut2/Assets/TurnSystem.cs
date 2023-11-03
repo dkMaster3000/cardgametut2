@@ -25,7 +25,8 @@ public class TurnSystem : MonoBehaviour
     public ManaManager OpponentManaManager;
 
     //Summoning Outline
-    public HandManager HandManager;
+    public HandManager PlayerHandManager;
+    public HandManager OpponentHandManager;
 
 
     // Start is called before the first frame update
@@ -36,7 +37,8 @@ public class TurnSystem : MonoBehaviour
 
         PlayArea = GameObject.Find("PlayArea");
 
-        HandManager = GameObject.Find("PlayerHand").GetComponent<HandManager>();
+        PlayerHandManager = GameObject.Find("PlayerHand").GetComponent<HandManager>();
+        OpponentHandManager = GameObject.Find("OpponentHand").GetComponent<HandManager>();
 
         PlayerManaManager = GameObject.Find("PlayerMana").GetComponent<ManaManager>();
         OpponentManaManager = GameObject.Find("OpponentMana").GetComponent<ManaManager>();
@@ -65,19 +67,9 @@ public class TurnSystem : MonoBehaviour
             turnText.text = "Opponent Turn";
         }
 
-        //UpdateManaText();
     }
 
-    //public void UpdateManaText()
-    //{
-    //    manaText.text = currentMana + "/" + maxMana;
-    //}
 
-    //public void IncreaseMaxMana(int x)
-    //{
-    //    maxMana += x;
-    //    UpdateManaText();
-    //}
 
     public void EndTurn()
     {
@@ -104,6 +96,7 @@ public class TurnSystem : MonoBehaviour
             opponentTurn += 1;
 
             OpponentManaManager.StartTurn();
+            OpponentDeck.DrawCards(1);
 
             ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
 
@@ -115,7 +108,8 @@ public class TurnSystem : MonoBehaviour
         }
 
         UpdateTurnText();
-        HandManager.UpdateHand();
+        PlayerHandManager.UpdateHand();
+        OpponentHandManager.UpdateHand();
     }
 
 

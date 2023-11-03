@@ -24,7 +24,7 @@ public class PlayerHP : MonoBehaviour
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
 
         maxHP = 20;
-        currentHP = 13;
+        currentHP = 20;
 
         UpdateText();
     }

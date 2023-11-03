@@ -46,5 +46,11 @@ public class ManaManager : MonoBehaviour
         UpdateManaText();
     }
 
+    public void PayCost(int cost)
+    {
+        currentMana -= cost;
+        UpdateManaText();
+    }
+
 
 }

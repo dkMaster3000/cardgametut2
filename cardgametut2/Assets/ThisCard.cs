@@ -35,11 +35,17 @@ public class ThisCard : MonoBehaviour
     public bool summoned;
     public bool dead;
 
+
+    public bool isPlayerCard = true;
+    public CardTags handCardTag = CardTags.PlayerHandCard;
+
     public GameObject PlayerGraveYard;
     public GameObject OpponentGraveYard;
     public GraveYardManager PlayerGraveYardManager;
     public GraveYardManager OpponentGraveYardManager;
     public GYVManager GYVManager;
+
+    public ManaManager ManaManager;
 
     public TurnSystem TurnSystem;
 
@@ -72,6 +78,31 @@ public class ThisCard : MonoBehaviour
         PlayerGraveYardManager = PlayerGraveYard.GetComponent<GraveYardManager>();
         OpponentGraveYardManager = OpponentGraveYard.GetComponent<GraveYardManager>();
 
+       
+
+         
+
+        if(gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.PlayerHandCard) || gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.PlayedCard))
+        {
+            isPlayerCard = true;
+        } else
+        {
+            isPlayerCard = false;
+        }
+
+        if(isPlayerCard)
+        {
+            ManaManager = GameObject.Find("PlayerMana").GetComponent<ManaManager>();
+        } else
+        {
+            ManaManager = GameObject.Find("OpponentMana").GetComponent<ManaManager>();
+        }
+
+        if(gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.OpponentHandCard))
+        {
+            cardBack = true;
+        }
+
         cardBackO.SetActive(cardBack);
         UpdateOutline();
 
@@ -79,8 +110,9 @@ public class ThisCard : MonoBehaviour
 
     public bool CanBeSummoned()
     {
-        //if (TurnSystem.isPlayerTurn && TurnSystem.currentMana >= cost && summoned == false && dead == false)
-        if (TurnSystem.isPlayerTurn && summoned == false && dead == false)
+        bool syncTurnOwner = TurnSystem.isPlayerTurn && isPlayerCard || !TurnSystem.isPlayerTurn && !isPlayerCard;
+
+        if (syncTurnOwner && ManaManager.currentMana >= cost && summoned == false && dead == false)
         {
             return true;
         }
@@ -92,8 +124,7 @@ public class ThisCard : MonoBehaviour
 
     public void Summon()
     {
-        //TurnSystem.currentMana -= cost; 
-        //TurnSystem.UpdateManaText();
+        ManaManager.PayCost(cost);
         summoned = true;
         if(cardAbillities.Length > 0)
         {
