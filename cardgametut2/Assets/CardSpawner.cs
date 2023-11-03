@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class CardSpawner : MonoBehaviour
 {
-    //tags
-    public static string OpponentPlayedCard = "OpponentPlayedCard";
-    public static string HandCard = "HandCard";
-    public static string GraveYardCard = "GraveYardCard";
+    public static GameObject Hand;
+    public static GameObject OpponentPlayArea;
+    public static GameObject CardDisplay;
+
+    public enum CardTags
+    {
+        OpponentPlayedCard, HandCard, GraveYardCard
+    }
 
     public enum CardColors
     {
@@ -17,7 +21,8 @@ public class CardSpawner : MonoBehaviour
 
     void Start()
     {
-
+        Hand = GameObject.Find("Hand");
+        OpponentPlayArea = GameObject.Find("OpponentPlayArea");
     }
 
     public static Card GetCard(List<Card> Deck)
@@ -27,12 +32,12 @@ public class CardSpawner : MonoBehaviour
         return cardToReturn;
     }
 
-    public static GameObject CreateCard(GameObject CardPrefabToInstatiate, Card CardData, string CardTag, GameObject MoveTo)
+    public static GameObject CreateCard(GameObject CardPrefabToInstatiate, Card CardData, CardTags CardTag)
     {
         GameObject newCardObject = Instantiate(CardPrefabToInstatiate);
         ThisCard newCard = newCardObject.GetComponent<ThisCard>();
 
-        newCardObject.tag = CardTag;
+        newCardObject.tag = GetStringFromCardTags(CardTag);
 
         newCard.cardData = CardData;
 
@@ -65,8 +70,8 @@ public class CardSpawner : MonoBehaviour
         newCard.thatImage.sprite = CardData.thisImage;
 
         newCard.cardBack = false;
-        newCard.summoned = CardTag == OpponentPlayedCard;
-        newCard.dead = CardTag == GraveYardCard;
+        newCard.summoned = CardTag == CardTags.OpponentPlayedCard;
+        newCard.dead = CardTag == CardTags.GraveYardCard;
 
         newCard.canAttack = false;
         newCard.targeting = false;
@@ -74,15 +79,14 @@ public class CardSpawner : MonoBehaviour
 
         newCard.frame.GetComponent<Image>().color = GetCardColor(CardData.color);
 
-        newCardObject.GetComponent<MoveCard>().MoveToPosition(newCardObject, MoveTo);
+        newCardObject.GetComponent<MoveCard>().MoveToPosition(newCardObject, GetLocationFromCardTags(CardTag));
 
         return newCardObject;
     }
 
-    public static Color32 GetCardColor(CardColors cardColors)
+    public static Color32 GetCardColor(CardColors cardColor)
     {
-
-        switch (cardColors)
+        switch (cardColor)
         {
             case CardColors.Red:
                 return new Color32(255, 0, 0, 255);
@@ -98,8 +102,38 @@ public class CardSpawner : MonoBehaviour
                 return new Color32(255, 255, 255, 255);
         }
         
+    }
 
+    public static string GetStringFromCardTags(CardTags cardTag)
+    {
+        switch (cardTag)
+        {
+            case CardTags.OpponentPlayedCard:
+                return "OpponentPlayedCard";
+            case CardTags.HandCard:
+                return "HandCard";
+            case CardTags.GraveYardCard:
+                return "GraveYardCard";
+            default:
+                return "Untagged"; 
+        }
+    }
 
+    public static GameObject GetLocationFromCardTags(CardTags cardTag)
+    {
+        CardDisplay = GameObject.Find("CardDisplay");
+
+        switch (cardTag)
+        {
+            case CardTags.OpponentPlayedCard:
+                return OpponentPlayArea;
+            case CardTags.HandCard:
+                return Hand;
+            case CardTags.GraveYardCard:
+                return CardDisplay;
+            default:
+                return Hand;
+        }
     }
 
 }

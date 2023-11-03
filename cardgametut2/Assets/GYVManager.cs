@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using static CardSpawner;
 
 public class GYVManager : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class GYVManager : MonoBehaviour
         int cardCount = cardsToDisplay.Count;
         for(int i = 0; i < cardCount; i++)
         {
-            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(cardsToDisplay), CardSpawner.GraveYardCard, CardDisplay);
+            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(cardsToDisplay), CardTags.GraveYardCard);
         }
     }
 }

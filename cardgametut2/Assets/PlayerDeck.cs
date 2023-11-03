@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
+using static CardSpawner;
 using Random = UnityEngine.Random;
 
 public class PlayerDeck : MonoBehaviour
@@ -22,13 +23,9 @@ public class PlayerDeck : MonoBehaviour
     public GameObject cardInDeck4;
 
     public GameObject CardToHand;
+
     public GameObject CardBack;
-    public GameObject Deck;
-
     public GameObject[] Clones;
-
-    public GameObject Hand;
-    public GameObject OpponentPlayArea;
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +42,9 @@ public class PlayerDeck : MonoBehaviour
         DrawCards(5);
 
         //For Test purpouse: create minions for Opponent 
-        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.OpponentPlayedCard, OpponentPlayArea);
-        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.OpponentPlayedCard, OpponentPlayArea);
-        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.OpponentPlayedCard, OpponentPlayArea);
+        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
+        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
+        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
 
 
     }
@@ -64,7 +61,7 @@ public class PlayerDeck : MonoBehaviour
         for (int i = 0; i < x; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.HandCard, Hand);
+            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.HandCard);
 
         }
     }
