@@ -11,7 +11,7 @@ public class CADraw : CardAbillity
 
 
 
-    public CADraw (int DrawXcards) : base("drawCards")
+    public CADraw (int DrawXcards, string Description) : base("drawCards", Description)
     {
         drawXcards = DrawXcards;
     }

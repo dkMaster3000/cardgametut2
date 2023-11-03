@@ -50,10 +50,6 @@ public class ThisCard : MonoBehaviour
     public TurnSystem TurnSystem;
     public PlayerDeck PlayerDeck;
 
-    public int drawXcards;
-    public int addXmaxMana;
-
-
 
     //Attack
     public GameObject Target;
@@ -123,11 +119,8 @@ public class ThisCard : MonoBehaviour
         cost = thisCard[0].cost;
         power = thisCard[0].power;
         health = thisCard[0].health;
-        cardDescription = thisCard[0].cardDescription;
+        cardDescription = thisCard[0].cardAbillity.descriptionText;
         cardAbillity = thisCard[0].cardAbillity;
-
-        drawXcards = thisCard[0].drawXcards;
-        addXmaxMana = thisCard[0].addXmaxMana;
 
         thisSprite = thisCard[0].thisImage;
 
@@ -188,8 +181,6 @@ public class ThisCard : MonoBehaviour
         TurnSystem.currentMana -= cost; 
         TurnSystem.UpdateManaText();
         summoned = true;
-        TurnSystem.IncreaseMaxMana(addXmaxMana);
-        //PlayerDeck.DrawCards(drawXcards);
         cardAbillity.Executable();
         UpdateOutline();
         HandManager.UpdateHand();

@@ -1201,6 +1201,8 @@ MonoBehaviour:
   GraveYardViewer: {fileID: 444885352}
   cardsToDisplay: []
   GraveYardCard: {fileID: 808656491525979790, guid: c892e9bcdaa67cd4f9cdecd872931c9c, type: 3}
+  CardDisplay: {fileID: 0}
+  GYVTitle: {fileID: 1437652126}
 --- !u!1 &502503762
 GameObject:
   m_ObjectHideFlags: 0

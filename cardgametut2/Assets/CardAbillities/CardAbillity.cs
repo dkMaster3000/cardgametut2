@@ -6,10 +6,12 @@ using UnityEngine;
 public abstract class CardAbillity
 {
     public string abillityIdentfier;
+    public string descriptionText;
 
-    public CardAbillity(string AbillityIdentfier)
+    public CardAbillity(string AbillityIdentfier, string DescriptionText)
     {
         abillityIdentfier = AbillityIdentfier;
+        descriptionText = DescriptionText;
     }
 
     public abstract void Executable();
