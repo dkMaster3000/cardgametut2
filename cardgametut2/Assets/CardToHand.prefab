@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -300151822173710946}
   m_Layer: 6
   m_Name: CardToHand
-  m_TagString: HandCard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

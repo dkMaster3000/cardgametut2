@@ -14,9 +14,7 @@ public class Card
 
     public Sprite thisImage;
 
-    public string color;
-
-    //public CardAbillity cardAbillity;
+    public CardSpawner.CardColors color;
 
     public CardAbillity[] cardAbillities;
 
@@ -26,7 +24,7 @@ public class Card
 
     }
 
-    public Card(int Id, string CardName, int Cost, int Power, int Health, Sprite ThisImage, string Color, CardAbillity[] CardAbillities)
+    public Card(int Id, string CardName, int Cost, int Power, int Health, Sprite ThisImage, CardSpawner.CardColors Color, CardAbillity[] CardAbillities)
     {
         id = Id;
         cardName = CardName;

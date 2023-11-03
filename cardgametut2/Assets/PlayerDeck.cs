@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class PlayerDeck : MonoBehaviour
@@ -26,6 +28,7 @@ public class PlayerDeck : MonoBehaviour
     public GameObject[] Clones;
 
     public GameObject Hand;
+    public GameObject OpponentPlayArea;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +43,13 @@ public class PlayerDeck : MonoBehaviour
         }
 
         DrawCards(5);
+
+        //For Test purpouse: create minions for Opponent 
+        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.OpponentPlayedCard, OpponentPlayArea);
+        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.OpponentPlayedCard, OpponentPlayArea);
+        CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.OpponentPlayedCard, OpponentPlayArea);
+
+
     }
 
     public void DrawCards(int cardsToDraw)
@@ -54,7 +64,7 @@ public class PlayerDeck : MonoBehaviour
         for (int i = 0; i < x; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            Instantiate(CardToHand, transform.position, transform.rotation);
+            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardSpawner.HandCard, Hand);
 
         }
     }
@@ -79,17 +89,6 @@ public class PlayerDeck : MonoBehaviour
             cardInDeck4.SetActive(false);
         }
     }
-
-
-
-    public Card GetCard()
-    {
-        Card cardToReturn = deck[deck.Count - 1];
-        deck.RemoveAt(deck.Count - 1);
-        return cardToReturn;
-    }
-
-
 
 
     public void Shuffle()

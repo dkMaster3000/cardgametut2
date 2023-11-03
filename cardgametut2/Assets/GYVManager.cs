@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class GYVManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GYVManager : MonoBehaviour
 
     public List<Card> cardsToDisplay = new List<Card>();
 
-    public GameObject GraveYardCard;
+    public GameObject CardToHand;
 
     public GameObject CardDisplay;
 
@@ -19,7 +20,7 @@ public class GYVManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CardDisplay = GameObject.Find("CardDisplay");
+        
     }
 
     public void CloseGYV()
@@ -33,13 +34,6 @@ public class GYVManager : MonoBehaviour
         GraveYardViewer.SetActive(false);
     }
 
-    public Card GetCard()
-    {
-        Card cardToReturn = cardsToDisplay[cardsToDisplay.Count - 1];
-        cardsToDisplay.RemoveAt(cardsToDisplay.Count - 1);
-        return cardToReturn;
-    }
-
     public void SetNewCards(List<Card> CardsToDisplay, string Title)
     {
         cardsToDisplay = new List<Card>(CardsToDisplay);
@@ -49,9 +43,12 @@ public class GYVManager : MonoBehaviour
 
     public void DisplayCards()
     {
-        foreach (Card card in cardsToDisplay)
+        CardDisplay = GameObject.Find("CardDisplay");
+
+        int cardCount = cardsToDisplay.Count;
+        for(int i = 0; i < cardCount; i++)
         {
-            Instantiate(GraveYardCard, transform.position, transform.rotation);
+            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(cardsToDisplay), CardSpawner.GraveYardCard, CardDisplay);
         }
     }
 }

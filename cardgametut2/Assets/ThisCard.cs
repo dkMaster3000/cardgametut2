@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 
 public class ThisCard : MonoBehaviour
 {
-    //why list?
-    public List<Card> thisCard = new List<Card>();
+    public Card cardData;
     public int thisId;
 
     public int id;
@@ -25,7 +24,6 @@ public class ThisCard : MonoBehaviour
     public Text healthText;
     public Text descriptionText;
 
-    public Sprite thisSprite;
     public Image thatImage;
 
     public Image frame;
@@ -69,8 +67,6 @@ public class ThisCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //default
-        thisCard[0] = CardDataBase.cardList[thisId];
 
         Hand = GameObject.Find("Hand");
         GraveYard = GameObject.Find("GraveYard");
@@ -86,91 +82,7 @@ public class ThisCard : MonoBehaviour
         PlayerGraveYardScript = GameObject.Find("GraveYard").GetComponent<GraveYardManager>();
         OpponentGraveYardScript = GameObject.Find("OpponentGraveYard").GetComponent<GraveYardManager>();
 
-
-        cardBack = false;
-        summoned = false;
-        dead = false;
-
-        if (tag == "HandCard")
-        {
-            thisCard[0] = PlayerDeck.GetCard();
-            cardBack = false;
-            tag = "Untagged";
-            cardBackO.SetActive(cardBack);
-
-            gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, Hand);
-
-        }
-
-        if (tag == "GraveYardCard")
-        {
-            GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
-            thisCard[0] = GYVManager.GetCard();
-            cardBack = false;
-            dead = true;
-            tag = "Untagged";
-            cardBackO.SetActive(cardBack);
-
-            gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, CardDisplay);
-        }
-
-        id = thisCard[0].id;
-        cardName = thisCard[0].cardName;
-        cost = thisCard[0].cost;
-        power = thisCard[0].power;
-        health = thisCard[0].health;
-        cardAbillities = thisCard[0].cardAbillities;
-
-        //get describtion trough all cardabillities
-        if (cardAbillities.Length > 0)
-        {
-            foreach(CardAbillity cardAbillity in cardAbillities)
-            {
-                cardDescription += cardAbillity.descriptionText + "\n";
-            }
-        } else
-        {
-            cardDescription = "It's a Monster!";
-        }
-
-        thisSprite = thisCard[0].thisImage;
-
-        nameText.text = " " + cardName;
-        costText.text = " " + cost;
-        powerText.text = " " + power;
-        healthText.text = " " + health;
-        descriptionText.text = " " + cardDescription;
-
-        thatImage.sprite = thisSprite;
-
-
-        if (thisCard[0].color == "Red")
-        {
-            frame.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-        }
-        if (thisCard[0].color == "Green")
-        {
-            frame.GetComponent<Image>().color = new Color32(0, 163, 108, 255);
-        }
-        if (thisCard[0].color == "Blue")
-        {
-            frame.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-        }
-        if (thisCard[0].color == "Purple")
-        {
-            frame.GetComponent<Image>().color = new Color32(255, 0, 255, 255);
-        }
-
-        if (thisCard[0].color == "None")
-        {
-            frame.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-        }
-
-        canAttack = false;
-
-        targeting = false;
-        targetingOpponent = false;
-
+        cardBackO.SetActive(cardBack);
         UpdateOutline();
 
     }
@@ -263,12 +175,12 @@ public class ThisCard : MonoBehaviour
         if (tag == "OpponentPlayedCard")
         {
             tag = "Untagged";        
-            OpponentGraveYardScript.BuryCard(thisCard[0]);
+            OpponentGraveYardScript.BuryCard(cardData);
             Destroy(gameObject);
 
         } else
         {
-            PlayerGraveYardScript.BuryCard(thisCard[0]);
+            PlayerGraveYardScript.BuryCard(cardData);
             Destroy(gameObject);
 
         }
