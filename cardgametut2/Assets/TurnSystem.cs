@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class TurnSystem : MonoBehaviour
 {
 
@@ -10,10 +11,6 @@ public class TurnSystem : MonoBehaviour
     public int playerTurn;
     public int opponentTurn;
     public Text turnText;
-
-    //public int maxMana;
-    //public int currentMana;
-    //public Text manaText;
 
     public PlayerDeck PlayerDeck;
     public PlayerDeck OpponentDeck;
@@ -43,9 +40,9 @@ public class TurnSystem : MonoBehaviour
         PlayerManaManager = GameObject.Find("PlayerMana").GetComponent<ManaManager>();
         OpponentManaManager = GameObject.Find("OpponentMana").GetComponent<ManaManager>();
 
-        isPlayerTurn = true;
-        playerTurn = 1;
-        opponentTurn = 0;
+        isPlayerTurn = Random.value > 0.5f;
+        playerTurn = isPlayerTurn ? 1 : 0;
+        opponentTurn = isPlayerTurn ? 0: 1;
 
         PlayerDeck.Initialise();
         OpponentDeck.Initialise();
