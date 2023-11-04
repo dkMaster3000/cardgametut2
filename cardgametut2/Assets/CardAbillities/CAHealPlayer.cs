@@ -11,9 +11,11 @@ public class CAHealPlayer : CardAbillity
 
 
 
-    public CAHealPlayer(int HealAmount, string Description) : base("healPlayer", Description)
+    public CAHealPlayer(int HealAmount) : base("healPlayer", "healPlayer")
     {
         healAmount = HealAmount;
+
+        descriptionText = "Heal " + HealAmount + " by Player";
     }
 
     public override void Executable(GameObject gameObjectToInteract)

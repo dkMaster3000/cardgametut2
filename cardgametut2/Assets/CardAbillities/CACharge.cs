@@ -5,7 +5,7 @@ using UnityEngine;
 public class CACharge : CardAbillity
 {
 
-    public CACharge( string Description) : base("charge", Description)
+    public CACharge() : base("charge", "Charge")
     {
        
     }

@@ -32,7 +32,7 @@ public class TurnSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerDeck = GameObject.Find("DeckArea").GetComponent<PlayerDeck>();
+        PlayerDeck = GameObject.Find("PlayerDeckArea").GetComponent<PlayerDeck>();
         OpponentDeck = GameObject.Find("OpponentDeckArea").GetComponent<PlayerDeck>();
 
         PlayArea = GameObject.Find("PlayArea");

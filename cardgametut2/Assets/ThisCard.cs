@@ -73,19 +73,10 @@ public class ThisCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerGraveYard = GameObject.Find("PlayerGraveYard");
-        OpponentGraveYard = GameObject.Find("OpponentGraveYard");
-
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
         OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
         HandManager = GameObject.Find("PlayerHand").GetComponent<HandManager>();
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
-        PlayerGraveYardManager = PlayerGraveYard.GetComponent<GraveYardManager>();
-        OpponentGraveYardManager = OpponentGraveYard.GetComponent<GraveYardManager>();
-
-       
-
-         
 
         if(gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.PlayerHandCard) || gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.PlayedCard))
         {
@@ -99,15 +90,23 @@ public class ThisCard : MonoBehaviour
         {
             ManaObject = GameObject.Find("PlayerMana");
             HPObject = GameObject.Find("PlayerHP");
-            Deck = GameObject.Find("DeckArea");
+            Deck = GameObject.Find("PlayerDeckArea");
+            PlayerGraveYard = GameObject.Find("PlayerGraveYard");
+            OpponentGraveYard = GameObject.Find("OpponentGraveYard");
         } else
         {
             ManaObject = GameObject.Find("OpponentMana");
             HPObject = GameObject.Find("OpponentHP");
             Deck = GameObject.Find("OpponentDeckArea");
-           
+            PlayerGraveYard = GameObject.Find("OpponentGraveYard");
+            OpponentGraveYard = GameObject.Find("PlayerGraveYard");
+
         }
+
         ManaManager = ManaObject.GetComponent<ManaManager>();
+
+        PlayerGraveYardManager = PlayerGraveYard.GetComponent<GraveYardManager>();
+        OpponentGraveYardManager = OpponentGraveYard.GetComponent<GraveYardManager>();
 
         if (gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.OpponentHandCard))
         {
@@ -142,21 +141,22 @@ public class ThisCard : MonoBehaviour
             foreach (CardAbillity cardAbillity in cardAbillities)
             {
 
-                if(cardAbillity.abillityIdentfier == "charge")
-                {
-                    canAttack = true;
-                }
-                if(cardAbillity.abillityIdentfier == "addMana")
-                {
-                    cardAbillity.Executable(ManaObject);
-                }
-                if (cardAbillity.abillityIdentfier == "healPlayer")
-                {
-                    cardAbillity.Executable(HPObject);
-                }
-                if (cardAbillity.abillityIdentfier == "drawCards")
-                {
-                    cardAbillity.Executable(Deck);
+                switch (cardAbillity.abillityIdentfier){
+                    case "charge":
+                        canAttack = true;
+                        break;
+                    case "addMana":
+                        cardAbillity.Executable(ManaObject);
+                        break;
+                    case "healPlayer":
+                        cardAbillity.Executable(HPObject);
+                        break;
+                    case "drawCards":
+                        cardAbillity.Executable(Deck);
+                        break;
+                    case "revive":
+                        cardAbillity.Executable(PlayerGraveYard);
+                        break;
                 }
 
             }
@@ -222,18 +222,8 @@ public class ThisCard : MonoBehaviour
 
     public void TriggerDeath()
     {
-        if (tag == "OpponentPlayedCard")
-        {
-            tag = "Untagged";
-            OpponentGraveYardManager.BuryCard(cardData);
-            Destroy(gameObject);
-
-        } else
-        {
-            PlayerGraveYardManager.BuryCard(cardData);
-            Destroy(gameObject);
-
-        }
+        PlayerGraveYardManager.BuryCard(cardData);
+        Destroy(gameObject);
     }
 
     //Attack Handling

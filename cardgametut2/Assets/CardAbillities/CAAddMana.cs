@@ -11,9 +11,11 @@ public class CAAddMana : CardAbillity
 
 
 
-    public CAAddMana(int AddXMana, string Description) : base("addMana", Description)
+    public CAAddMana(int AddXMana) : base("addMana", "addMana")
     {
         addXMana = AddXMana;
+
+        descriptionText = "Add " + AddXMana + " max Mana";
     }
 
     public override void Executable(GameObject gameObjectToInteract)

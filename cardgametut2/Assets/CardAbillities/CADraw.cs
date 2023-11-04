@@ -11,9 +11,11 @@ public class CADraw : CardAbillity
 
 
 
-    public CADraw (int DrawXcards, string Description) : base("drawCards", Description)
+    public CADraw (int DrawXcards) : base("drawCards", "DrawXCards")
     {
         drawXcards = DrawXcards;
+
+        descriptionText = "Draw " + DrawXcards + " Cards";
     }
 
     public override void Executable(GameObject gameObjectToInteract)
