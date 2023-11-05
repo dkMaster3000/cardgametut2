@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static TurnSystem;
 
 public class AIManager : MonoBehaviour
 {
@@ -11,17 +13,20 @@ public class AIManager : MonoBehaviour
     public GameObject OpponentPlayArea;
     public GameObject PlayerPlayArea;
 
+    public GameObject PlayerHPObject;
+
     public TurnSystem TurnSystem;
 
     //operational objects
     public ThisCard[] handCards = new ThisCard[] {};
 
-    public ThisCard[] playedCards = new ThisCard[] {};
-    public ThisCard[] playerPlayedCards = new ThisCard[] {};
-
     //phase flags
+    public bool initialized = false;
+    public static bool drawnThisTurn = false;
+    public bool drawPhase = false;
     public bool summonPhase = false;
     public bool battlePhase = false;
+    public bool cardIsAttacking = false;
     public bool endPhase = false;
 
     void Start()
@@ -32,20 +37,34 @@ public class AIManager : MonoBehaviour
         OpponentPlayArea = GameObject.Find("OpponentPlayArea");
         PlayerPlayArea = GameObject.Find("PlayerPlayArea");
 
+        PlayerHPObject = GameObject.Find("PlayerHP");
+
         TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
     }
 
     //main function for AI
     public void PerformTurn()
     {
-        summonPhase = true;
+        //drawPhase
+        StartCoroutine(WaitUntilDrawn());
+
         //summon phase
         StartCoroutine(SummonCards());
 
         //battle phase
+        StartCoroutine(StartBattlePhase());
 
         //end phase
         StartCoroutine(EndTurn());
+    }
+
+    //always waits for drawn cards, especialy important in initialization
+    //should be triggert in drawablitties
+    public IEnumerator WaitUntilDrawn()
+    {
+        yield return new WaitUntil(() => drawnThisTurn == true);
+        drawnThisTurn = false;
+        summonPhase = true;
     }
 
     //summoning helper
@@ -67,28 +86,37 @@ public class AIManager : MonoBehaviour
         {
             summonPhase = false;
             battlePhase = true;
+            //endPhase = true;
         }
     }
 
-    public IEnumerator StartAttackPhase()
+    public IEnumerator StartBattlePhase()
     {
         yield return new WaitUntil(() => battlePhase == true);
         yield return new WaitForSeconds(1);
 
-        playedCards = OpponentPlayArea.GetComponentsInChildren<ThisCard>();
-        playerPlayedCards = PlayerPlayArea.GetComponentsInChildren<ThisCard>();
+        //get all cards that can attack in a list
+        ThisCard[] preparedCards = null;
+        ThisCard[] playedCards = OpponentPlayArea.GetComponentsInChildren<ThisCard>();
+        if ( playedCards != null ) preparedCards = playedCards.Where(c => c.canAttack).ToArray();
 
-        if( playedCards != null )
+
+        if (preparedCards != null )
         {
-            //cards are summoned
-            //do attack
-            if(playerPlayedCards != null)
+            //cards are summoned and can attack
+
+            
+
+            foreach (ThisCard card in preparedCards)
             {
-                //attack player cards
-            } else
-            {
-                //attack player
+                yield return new WaitForSeconds(0.5f);
+                yield return new WaitUntil(() => cardIsAttacking == false);
+                StartCoroutine(PerformAttack(card));
             }
+
+            endPhase = true;
+
+
         } else
         {
             //no cards are summoned
@@ -99,18 +127,43 @@ public class AIManager : MonoBehaviour
 
     }
 
+    public IEnumerator PerformAttack(ThisCard attackingCard)
+    {
+        cardIsAttacking = true;
+        attackingCard.Targeting();
+        yield return new WaitForSeconds(0.5f);
+
+
+        //all cards from player
+        ThisCard[] playerPlayedCards = PlayerPlayArea.GetComponentsInChildren<ThisCard>();
+
+        //do attack
+        if (playerPlayedCards.Length > 0)
+        {
+            //attack player cards (in order to simplify
+            attackingCard.Target = PlayerPlayArea.transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            //attack player
+            attackingCard.Target = PlayerHPObject;
+        }
+
+        attackingCard.Attack();
+
+        cardIsAttacking = false;
+    }
+
     //end turn
     public IEnumerator EndTurn()
     {
         yield return new WaitUntil(() => endPhase == true);
         yield return new WaitForSeconds(1);
 
+        drawnThisTurn = false;
         endPhase = false;
         TurnSystem.EndTurn();
 
     }
-
-
-
 
 }

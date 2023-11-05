@@ -73,8 +73,14 @@ public class PlayerDeck : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), handCardTag);
-
         }
+
+        //aimanager knowledge that it was drawn
+        if(!isPlayerDeck && !AIManager.drawnThisTurn)
+        {
+            AIManager.drawnThisTurn = true;
+        }
+
     }
 
     //has to be reworked if deck size increases

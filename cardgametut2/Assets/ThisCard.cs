@@ -50,7 +50,8 @@ public class ThisCard : MonoBehaviour
 
     public TurnSystem TurnSystem;
 
-    public GameObject HPObject;
+    public GameObject PlayerHPObject;
+    public PlayerHP PlayerHP;
     public PlayerHP OpponentHP;
 
     public GameObject Deck;
@@ -73,8 +74,7 @@ public class ThisCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();
-        OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
+        TurnSystem = GameObject.Find("TurnSystem").GetComponent<TurnSystem>();      
         HandManager = GameObject.Find("PlayerHand").GetComponent<HandManager>();
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
 
@@ -89,15 +89,23 @@ public class ThisCard : MonoBehaviour
         if(isPlayerCard)
         {
             ManaObject = GameObject.Find("PlayerMana");
-            HPObject = GameObject.Find("PlayerHP");
+
+            PlayerHPObject = GameObject.Find("PlayerHP");
+            OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
+
             Deck = GameObject.Find("PlayerDeckArea");
+
             PlayerGraveYard = GameObject.Find("PlayerGraveYard");
             OpponentGraveYard = GameObject.Find("OpponentGraveYard");
         } else
         {
             ManaObject = GameObject.Find("OpponentMana");
-            HPObject = GameObject.Find("OpponentHP");
+
+            PlayerHPObject = GameObject.Find("OpponentHP");
+            OpponentHP = GameObject.Find("PlayerHP").GetComponent<PlayerHP>();
+
             Deck = GameObject.Find("OpponentDeckArea");
+
             PlayerGraveYard = GameObject.Find("OpponentGraveYard");
             OpponentGraveYard = GameObject.Find("PlayerGraveYard");
 
@@ -149,7 +157,7 @@ public class ThisCard : MonoBehaviour
                         cardAbillity.Executable(ManaObject);
                         break;
                     case "healPlayer":
-                        cardAbillity.Executable(HPObject);
+                        cardAbillity.Executable(PlayerHPObject);
                         break;
                     case "drawCards":
                         cardAbillity.Executable(Deck);
@@ -254,7 +262,7 @@ public class ThisCard : MonoBehaviour
         {
             if(Target != null)
             {
-                if (Target.name == "OpponentHP")
+                if (Target.name == "OpponentHP" || Target.name == "PlayerHP")
                 {
                     OpponentHP.DealDamage(power);
                 }
@@ -266,6 +274,8 @@ public class ThisCard : MonoBehaviour
                     GetDamage(targetCard.power);
                 }
 
+                targeting = false;
+                GameState.targeting = false;
                 canAttack = false;
                 UpdateOutline();
             }
