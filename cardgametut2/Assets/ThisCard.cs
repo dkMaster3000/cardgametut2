@@ -314,7 +314,22 @@ public class ThisCard : MonoBehaviour
             GYVManager.CloseGYV();
             
         }
+    }
 
+
+
+    //-------------------------------------AI-------------------------------------
+    //-------------------------------------AI-------------------------------------
+    //-------------------------------------AI-------------------------------------
+
+    public void AISummon()
+    {
+        CardTags newCardTag = CardTags.OpponentPlayedCard;
+        tag = GetStringFromCardTags(newCardTag);
+        cardBack = false;
+        cardBackO.SetActive(cardBack);
+        gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, GetLocationFromCardTags(newCardTag));
+        Summon();
     }
 
 }

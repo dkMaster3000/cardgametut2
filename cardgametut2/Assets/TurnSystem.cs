@@ -15,7 +15,7 @@ public class TurnSystem : MonoBehaviour
     public PlayerDeck PlayerDeck;
     public PlayerDeck OpponentDeck;
 
-    public GameObject PlayArea;
+    public GameObject PlayerPlayArea;
 
 
     public ManaManager PlayerManaManager;
@@ -25,6 +25,9 @@ public class TurnSystem : MonoBehaviour
     public HandManager PlayerHandManager;
     public HandManager OpponentHandManager;
 
+    //AI
+    AIManager AIManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,7 @@ public class TurnSystem : MonoBehaviour
         PlayerDeck = GameObject.Find("PlayerDeckArea").GetComponent<PlayerDeck>();
         OpponentDeck = GameObject.Find("OpponentDeckArea").GetComponent<PlayerDeck>();
 
-        PlayArea = GameObject.Find("PlayArea");
+        PlayerPlayArea = GameObject.Find("PlayerPlayArea");
 
         PlayerHandManager = GameObject.Find("PlayerHand").GetComponent<HandManager>();
         OpponentHandManager = GameObject.Find("OpponentHand").GetComponent<HandManager>();
@@ -40,7 +43,10 @@ public class TurnSystem : MonoBehaviour
         PlayerManaManager = GameObject.Find("PlayerMana").GetComponent<ManaManager>();
         OpponentManaManager = GameObject.Find("OpponentMana").GetComponent<ManaManager>();
 
-        isPlayerTurn = Random.value > 0.5f;
+        AIManager = GameObject.Find("AI").GetComponent<AIManager>();
+
+        //isPlayerTurn = Random.value > 0.5f;
+        isPlayerTurn = false;
         playerTurn = isPlayerTurn ? 1 : 0;
         opponentTurn = isPlayerTurn ? 0: 1;
 
@@ -51,6 +57,18 @@ public class TurnSystem : MonoBehaviour
         OpponentManaManager.Initialise(!isPlayerTurn);
 
         UpdateTurnText();
+
+        if (!isPlayerTurn)
+        {
+            StartCoroutine(DelayedAIPerform(2));
+        }
+    }
+
+    public IEnumerator DelayedAIPerform(float x)
+    {
+        yield return new WaitForSeconds(x);
+        AIManager.PerformTurn();
+
     }
 
     public void UpdateTurnText()
@@ -80,7 +98,7 @@ public class TurnSystem : MonoBehaviour
 
             PlayerDeck.DrawCards(1);
 
-            ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
+            ThisCard[] playedCards = PlayerPlayArea.GetComponentsInChildren<ThisCard>();
 
             foreach (ThisCard child in playedCards)
             {
@@ -95,13 +113,16 @@ public class TurnSystem : MonoBehaviour
             OpponentManaManager.StartTurn();
             OpponentDeck.DrawCards(1);
 
-            ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
+            ThisCard[] playedCards = PlayerPlayArea.GetComponentsInChildren<ThisCard>();
 
             foreach (ThisCard child in playedCards)
             {
                 child.BeExhausted();
             }
-            
+
+            StartCoroutine(DelayedAIPerform(0.5f));
+
+
         }
 
         UpdateTurnText();

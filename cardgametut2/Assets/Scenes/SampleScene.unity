@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d475299755a940c4cb4450d6e48599e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayArea: {fileID: 0}
+  PlayerPlayArea: {fileID: 0}
 --- !u!1 &328749192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,6 +1713,55 @@ MonoBehaviour:
   maxMana: 0
   currentMana: 0
   manaText: {fileID: 160441809}
+--- !u!1 &363648777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363648778}
+  - component: {fileID: 363648779}
+  m_Layer: 0
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &363648778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363648777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1155.0262, y: 583.2452, z: -6.639747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &363648779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363648777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aeb5cac4cf9254f94afcef536ad6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpponentHandManager: {fileID: 0}
+  OpponentPlayArea: {fileID: 0}
+  PlayerPlayArea: {fileID: 0}
+  TurnSystem: {fileID: 0}
+  handCards: []
 --- !u!1 &365306929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 808656491525979790, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
@@ -1732,7 +1781,7 @@ GameObject:
   - component: {fileID: 396535433}
   - component: {fileID: 396535434}
   m_Layer: 7
-  m_Name: PlayArea
+  m_Name: PlayerPlayArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4157,7 +4206,7 @@ MonoBehaviour:
   turnText: {fileID: 1162814758}
   PlayerDeck: {fileID: 0}
   OpponentDeck: {fileID: 0}
-  PlayArea: {fileID: 0}
+  PlayerPlayArea: {fileID: 0}
   PlayerManaManager: {fileID: 0}
   OpponentManaManager: {fileID: 0}
   PlayerHandManager: {fileID: 0}
@@ -4244,7 +4293,7 @@ GameObject:
   - component: {fileID: 1636465942}
   - component: {fileID: 1636465943}
   m_Layer: 5
-  m_Name: DeckArea
+  m_Name: PlayerDeckArea
   m_TagString: PlayerDeck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5374,3 +5423,4 @@ SceneRoots:
   - {fileID: 1635763955}
   - {fileID: 1567671158}
   - {fileID: 315409852}
+  - {fileID: 363648778}

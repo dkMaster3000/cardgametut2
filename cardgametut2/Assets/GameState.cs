@@ -9,16 +9,16 @@ public class GameState : MonoBehaviour
     public static bool targeting = false;
     public static bool targetingGraveYard = false;
 
-    public GameObject PlayArea;
+    public GameObject PlayerPlayArea;
 
     void Start()
     {
-        PlayArea = GameObject.Find("PlayArea");
+        PlayerPlayArea = GameObject.Find("PlayerPlayArea");
     }
 
     public ThisCard GetTargetingCard()
     {
-        ThisCard[] playedCards = PlayArea.GetComponentsInChildren<ThisCard>();
+        ThisCard[] playedCards = PlayerPlayArea.GetComponentsInChildren<ThisCard>();
 
         foreach (ThisCard child in playedCards)
         {

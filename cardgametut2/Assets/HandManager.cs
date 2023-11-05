@@ -6,11 +6,16 @@ public class HandManager : MonoBehaviour
 {
 
     public void UpdateHand() {
-        ThisCard[] handCards = gameObject.GetComponentsInChildren<ThisCard>();
+        ThisCard[] handCards = GetHandCards();
 
         foreach (ThisCard child in handCards)
         {
             child.UpdateOutline();
         }
+    }
+
+    public ThisCard[] GetHandCards ()
+    {
+        return gameObject.GetComponentsInChildren<ThisCard>();
     }
 }

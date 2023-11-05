@@ -8,7 +8,7 @@ public class CardSpawner : MonoBehaviour
     public static GameObject PlayerHand;
     public static GameObject OpponentHand;
     public static GameObject OpponentPlayArea;
-    public static GameObject PlayArea;
+    public static GameObject PlayerPlayArea;
     public static GameObject CardDisplay;
 
     public enum CardTags
@@ -26,7 +26,7 @@ public class CardSpawner : MonoBehaviour
         PlayerHand = GameObject.Find("PlayerHand");
         OpponentHand = GameObject.Find("OpponentHand");
         OpponentPlayArea = GameObject.Find("OpponentPlayArea");
-        PlayArea = GameObject.Find("PlayArea");
+        PlayerPlayArea = GameObject.Find("PlayerPlayArea");
     }
 
     public static Card GetCard(List<Card> Deck)
@@ -140,7 +140,7 @@ public class CardSpawner : MonoBehaviour
             case CardTags.GraveYardCard:
                 return CardDisplay;
             case CardTags.PlayedCard:
-                return PlayArea;
+                return PlayerPlayArea;
             default:
                 return PlayerHand;
         }
