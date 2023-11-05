@@ -16,6 +16,9 @@ public class AIManager : MonoBehaviour
     //operational objects
     public ThisCard[] handCards = new ThisCard[] {};
 
+    public ThisCard[] playedCards = new ThisCard[] {};
+    public ThisCard[] playerPlayedCards = new ThisCard[] {};
+
     //phase flags
     public bool summonPhase = false;
     public bool battlePhase = false;
@@ -63,6 +66,34 @@ public class AIManager : MonoBehaviour
         } else
         {
             summonPhase = false;
+            battlePhase = true;
+        }
+    }
+
+    public IEnumerator StartAttackPhase()
+    {
+        yield return new WaitUntil(() => battlePhase == true);
+        yield return new WaitForSeconds(1);
+
+        playedCards = OpponentPlayArea.GetComponentsInChildren<ThisCard>();
+        playerPlayedCards = PlayerPlayArea.GetComponentsInChildren<ThisCard>();
+
+        if( playedCards != null )
+        {
+            //cards are summoned
+            //do attack
+            if(playerPlayedCards != null)
+            {
+                //attack player cards
+            } else
+            {
+                //attack player
+            }
+        } else
+        {
+            //no cards are summoned
+            //end battle phase
+            battlePhase = false;
             endPhase = true;
         }
 
