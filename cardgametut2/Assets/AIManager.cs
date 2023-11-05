@@ -16,6 +16,11 @@ public class AIManager : MonoBehaviour
     //operational objects
     public ThisCard[] handCards = new ThisCard[] {};
 
+    //phase flags
+    public bool summonPhase = false;
+    public bool battlePhase = false;
+    public bool endPhase = false;
+
     void Start()
     {
         //load objects
@@ -30,18 +35,21 @@ public class AIManager : MonoBehaviour
     //main function for AI
     public void PerformTurn()
     {
+        summonPhase = true;
         //summon phase
-        SummonCards();
+        StartCoroutine(SummonCards());
 
         //battle phase
 
         //end phase
-        TurnSystem.EndTurn();
+        StartCoroutine(EndTurn());
     }
 
     //summoning helper
-    public void SummonCards()
+    public IEnumerator SummonCards()
     {
+        yield return new WaitUntil(() => summonPhase == true);
+
         handCards = OpponentHandManager.GetHandCards();
 
         //first summon first card
@@ -49,23 +57,25 @@ public class AIManager : MonoBehaviour
 
         if (cardToSummon)
         {
-            //cardToSummon.AISummon();
-            StartCoroutine(DelayedSummon(0.5f, cardToSummon));
-            //SummonCards();
+            yield return new WaitForSeconds(1);
+            cardToSummon.AISummon();
+            StartCoroutine(SummonCards());
         } else
         {
-            return;
+            summonPhase = false;
+            endPhase = true;
         }
 
-        
     }
 
-    //visual gap
-    public IEnumerator DelayedSummon(float x, ThisCard cardToSummon)
+    //end turn
+    public IEnumerator EndTurn()
     {
-            yield return new WaitForSeconds(x);
-            cardToSummon.AISummon();
-            //SummonCards();
+        yield return new WaitUntil(() => endPhase == true);
+        yield return new WaitForSeconds(1);
+
+        endPhase = false;
+        TurnSystem.EndTurn();
 
     }
 

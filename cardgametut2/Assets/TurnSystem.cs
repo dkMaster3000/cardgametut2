@@ -60,7 +60,7 @@ public class TurnSystem : MonoBehaviour
 
         if (!isPlayerTurn)
         {
-            StartCoroutine(DelayedAIPerform(2));
+            StartCoroutine(DelayedAIPerform(1.5f));
         }
     }
 
