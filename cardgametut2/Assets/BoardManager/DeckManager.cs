@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using static CardSpawner;
 using Random = UnityEngine.Random;
 
-public class PlayerDeck : MonoBehaviour
+public class DeckManager : MonoBehaviour
 {
 
     public List<Card> deck = new List<Card>();

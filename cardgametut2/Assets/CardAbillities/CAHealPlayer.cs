@@ -7,10 +7,6 @@ public class CAHealPlayer : CardAbillity
 {
     public int healAmount;
 
-    public PlayerHP PlayerHP;
-
-
-
     public CAHealPlayer(int HealAmount) : base("healPlayer", "healPlayer")
     {
         healAmount = HealAmount;
@@ -20,7 +16,7 @@ public class CAHealPlayer : CardAbillity
 
     public override void Executable(GameObject gameObjectToInteract)
     {
-        PlayerHP = gameObjectToInteract.GetComponent<PlayerHP>();
+        HPManager PlayerHP = gameObjectToInteract.GetComponent<HPManager>();
         PlayerHP.Heal(healAmount);
     }
 }

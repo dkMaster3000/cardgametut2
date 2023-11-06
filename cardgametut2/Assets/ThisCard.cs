@@ -51,8 +51,8 @@ public class ThisCard : MonoBehaviour
     public TurnSystem TurnSystem;
 
     public GameObject PlayerHPObject;
-    public PlayerHP PlayerHP;
-    public PlayerHP OpponentHP;
+    public HPManager PlayerHP;
+    public HPManager OpponentHP;
 
     public GameObject Deck;
 
@@ -91,7 +91,7 @@ public class ThisCard : MonoBehaviour
             ManaObject = GameObject.Find("PlayerMana");
 
             PlayerHPObject = GameObject.Find("PlayerHP");
-            OpponentHP = GameObject.Find("OpponentHP").GetComponent<PlayerHP>();
+            OpponentHP = GameObject.Find("OpponentHP").GetComponent<HPManager>();
 
             Deck = GameObject.Find("PlayerDeckArea");
 
@@ -102,7 +102,7 @@ public class ThisCard : MonoBehaviour
             ManaObject = GameObject.Find("OpponentMana");
 
             PlayerHPObject = GameObject.Find("OpponentHP");
-            OpponentHP = GameObject.Find("PlayerHP").GetComponent<PlayerHP>();
+            OpponentHP = GameObject.Find("PlayerHP").GetComponent<HPManager>();
 
             Deck = GameObject.Find("OpponentDeckArea");
 

@@ -7,9 +7,6 @@ public class CADraw : CardAbillity
 {
     public int drawXcards;
 
-    public PlayerDeck PlayerDeck;
-
-
 
     public CADraw (int DrawXcards) : base("drawCards", "DrawXCards")
     {
@@ -20,7 +17,7 @@ public class CADraw : CardAbillity
 
     public override void Executable(GameObject gameObjectToInteract)
     {
-        PlayerDeck = gameObjectToInteract.GetComponent<PlayerDeck>();
+        DeckManager PlayerDeck = gameObjectToInteract.GetComponent<DeckManager>();
         PlayerDeck.DrawCards(drawXcards);
     }
 }
