@@ -78,7 +78,7 @@ public class CardSpawner : MonoBehaviour
         newCard.thatImage.sprite = CardData.thisImage;
 
         newCard.cardBack = false;
-        newCard.summoned = CardTag == CardTags.OpponentPlayedCard;
+        newCard.summoned = CardTag == CardTags.OpponentPlayedCard || CardTag == CardTags.PlayedCard;
         newCard.dead = CardTag == CardTags.GraveYardCard;
 
         newCard.canAttack = false;

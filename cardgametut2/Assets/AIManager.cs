@@ -75,7 +75,7 @@ public class AIManager : MonoBehaviour
         handCards = OpponentHandManager.GetHandCards();
 
         //first summon first card
-        ThisCard cardToSummon = Array.Find(handCards, element => element.CanBeSummoned() && element.cardName != "Reviver");
+        ThisCard cardToSummon = Array.Find(handCards, element => element.CanBeSummoned());
 
         if (cardToSummon)
         {
@@ -86,7 +86,6 @@ public class AIManager : MonoBehaviour
         {
             summonPhase = false;
             battlePhase = true;
-            //endPhase = true;
         }
     }
 
@@ -163,7 +162,6 @@ public class AIManager : MonoBehaviour
         drawnThisTurn = false;
         endPhase = false;
         TurnSystem.EndTurn();
-
     }
 
 }

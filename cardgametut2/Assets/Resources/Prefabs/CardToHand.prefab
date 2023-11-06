@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: -4384560257917258832}
   - component: {fileID: 442695092046396552}
   - component: {fileID: -4805728513713870281}
+  - component: {fileID: -5674861068119361548}
   - component: {fileID: -174418085903366463}
   - component: {fileID: 3454320585389546860}
   - component: {fileID: -4818668714853560224}
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardData:
+    universalCardID: 0
     id: 0
     cardName: 
     cost: 0
@@ -198,15 +200,21 @@ MonoBehaviour:
   cardBackO: {fileID: 70026265191025546}
   summoned: 0
   dead: 0
-  Hand: {fileID: 0}
-  GraveYard: {fileID: 0}
+  isPlayerCard: 1
+  handCardTag: 2
+  PlayerGraveYard: {fileID: 0}
   OpponentGraveYard: {fileID: 0}
-  PlayerGraveYardScript: {fileID: 0}
-  OpponentGraveYardScript: {fileID: 0}
+  PlayerGraveYardManager: {fileID: 0}
+  OpponentGraveYardManager: {fileID: 0}
   GYVManager: {fileID: 0}
+  ManaObject: {fileID: 0}
+  ManaManager: {fileID: 0}
   TurnSystem: {fileID: 0}
-  Target: {fileID: 0}
+  PlayerHPObject: {fileID: 0}
+  PlayerHP: {fileID: 0}
   OpponentHP: {fileID: 0}
+  Deck: {fileID: 0}
+  Target: {fileID: 0}
   GameState: {fileID: 0}
   canAttack: 0
   targeting: 0
@@ -258,6 +266,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 0}
   TurnSystem: {fileID: 0}
+--- !u!114 &-5674861068119361548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808656491525979790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee224021ef007c04e9372b303769e55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerGraveYard: {fileID: 0}
+  PlayerGraveYardManager: {fileID: 0}
+  GYVManager: {fileID: 0}
 --- !u!114 &-174418085903366463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,8 +402,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6548727987383420739}
-          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+        - m_Target: {fileID: -5674861068119361548}
+          m_TargetAssemblyTypeName: ReviveCard, Assembly-CSharp
           m_MethodName: Revive
           m_Mode: 1
           m_Arguments:

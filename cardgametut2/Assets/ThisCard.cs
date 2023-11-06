@@ -40,10 +40,7 @@ public class ThisCard : MonoBehaviour
     public CardTags handCardTag = CardTags.PlayerHandCard;
 
     public GameObject PlayerGraveYard;
-    public GameObject OpponentGraveYard;
     public GraveYardManager PlayerGraveYardManager;
-    public GraveYardManager OpponentGraveYardManager;
-    public GYVManager GYVManager;
 
     public GameObject ManaObject;
     public ManaManager ManaManager;
@@ -96,7 +93,6 @@ public class ThisCard : MonoBehaviour
             Deck = GameObject.Find("PlayerDeckArea");
 
             PlayerGraveYard = GameObject.Find("PlayerGraveYard");
-            OpponentGraveYard = GameObject.Find("OpponentGraveYard");
         } else
         {
             ManaObject = GameObject.Find("OpponentMana");
@@ -107,14 +103,12 @@ public class ThisCard : MonoBehaviour
             Deck = GameObject.Find("OpponentDeckArea");
 
             PlayerGraveYard = GameObject.Find("OpponentGraveYard");
-            OpponentGraveYard = GameObject.Find("PlayerGraveYard");
 
         }
 
         ManaManager = ManaObject.GetComponent<ManaManager>();
 
         PlayerGraveYardManager = PlayerGraveYard.GetComponent<GraveYardManager>();
-        OpponentGraveYardManager = OpponentGraveYard.GetComponent<GraveYardManager>();
 
         if (gameObject.tag == CardSpawner.GetStringFromCardTags(CardTags.OpponentHandCard))
         {
@@ -163,7 +157,7 @@ public class ThisCard : MonoBehaviour
                         cardAbillity.Executable(Deck);
                         break;
                     case "revive":
-                        cardAbillity.Executable(PlayerGraveYard);
+                        cardAbillity.Executable(PlayerGraveYard);                        
                         break;
                 }
 
@@ -303,36 +297,6 @@ public class ThisCard : MonoBehaviour
             GameState.LockTarget(null);
         }
     }
-
-
-    //selection in GraveYard
-    //on mouseclick
-    public void Revive()
-    {
-        if(GameState.targetingGraveYard == true)
-        {
-            //CardTags newCardTag = CardTags.PlayedCard;
-            //gameObject.tag = CardSpawner.GetStringFromCardTags(newCardTag);
-            //gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, CardSpawner.GetLocationFromCardTags(newCardTag));
-            //summoned = true;
-            //dead = false;
-
-
-            CardSpawner.CreateCard(cardData, CardTags.PlayedCard);
-
-            Debug.Log("card universalid: " + cardData.universalCardID);
-
-            PlayerGraveYardManager.RemoveByUniversalCardID(cardData.universalCardID);
-            OpponentGraveYardManager.RemoveByUniversalCardID(cardData.universalCardID);
-
-            GameState.targetingGraveYard = false;
-            GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
-            GYVManager.CloseGYV();
-            
-        }
-    }
-
-
 
     //-------------------------------------AI-------------------------------------
     //-------------------------------------AI-------------------------------------
