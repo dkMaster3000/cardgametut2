@@ -13,18 +13,16 @@ public class PlayerHP : MonoBehaviour
     public Text hpText;
     public Image Health;
 
-    public GameObject PlayArea;
     public GameState GameState;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayArea = GameObject.Find("PlayArea");
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
 
         maxHP = 20;
-        currentHP = 10;
+        currentHP = 20;
 
         UpdateText();
     }

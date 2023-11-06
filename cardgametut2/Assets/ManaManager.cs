@@ -35,12 +35,17 @@ public class ManaManager : MonoBehaviour
     public void IncreaseMaxMana(int x)
     {
         maxMana += x;
+        if(maxMana > 10)
+        {
+            maxMana = 10;
+        }
+
         UpdateManaText();
     }
 
     public void StartTurn()
     {
-        maxMana += 1;
+        IncreaseMaxMana(1);
         currentMana = maxMana;
 
         UpdateManaText();
