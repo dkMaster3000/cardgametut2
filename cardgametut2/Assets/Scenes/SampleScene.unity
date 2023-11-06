@@ -1760,8 +1760,15 @@ MonoBehaviour:
   OpponentHandManager: {fileID: 0}
   OpponentPlayArea: {fileID: 0}
   PlayerPlayArea: {fileID: 0}
+  PlayerHPObject: {fileID: 0}
   TurnSystem: {fileID: 0}
   handCards: []
+  initialized: 0
+  drawPhase: 0
+  summonPhase: 0
+  battlePhase: 0
+  cardIsAttacking: 0
+  endPhase: 0
 --- !u!1 &365306929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 808656491525979790, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}
@@ -2805,7 +2812,6 @@ MonoBehaviour:
   currentHP: 0
   hpText: {fileID: 1394334140}
   Health: {fileID: 877261744}
-  PlayArea: {fileID: 0}
   GameState: {fileID: 0}
 --- !u!114 &877261744
 MonoBehaviour:
@@ -4155,7 +4161,6 @@ MonoBehaviour:
   currentHP: 0
   hpText: {fileID: 839575708}
   Health: {fileID: 1489308487}
-  PlayArea: {fileID: 0}
   GameState: {fileID: 0}
 --- !u!1 &1567671157
 GameObject:
@@ -4204,13 +4209,15 @@ MonoBehaviour:
   playerTurn: 0
   opponentTurn: 0
   turnText: {fileID: 1162814758}
-  PlayerDeck: {fileID: 0}
-  OpponentDeck: {fileID: 0}
+  PlayerDeckManager: {fileID: 0}
+  OpponentDeckManager: {fileID: 0}
   PlayerPlayArea: {fileID: 0}
+  OpponentPlayArea: {fileID: 0}
   PlayerManaManager: {fileID: 0}
   OpponentManaManager: {fileID: 0}
   PlayerHandManager: {fileID: 0}
   OpponentHandManager: {fileID: 0}
+  EndTurnButtonManager: {fileID: 0}
 --- !u!1 &1635763952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,6 +4887,7 @@ GameObject:
   - component: {fileID: 1946559546}
   - component: {fileID: 1946559545}
   - component: {fileID: 1946559544}
+  - component: {fileID: 1946559547}
   m_Layer: 5
   m_Name: EndTurnButton
   m_TagString: Untagged
@@ -4951,9 +4959,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1567671159}
-        m_TargetAssemblyTypeName: TurnSystem, Assembly-CSharp
-        m_MethodName: EndTurn
+      - m_Target: {fileID: 1946559547}
+        m_TargetAssemblyTypeName: EndTurnButtonManager, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4976,7 +4984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.38039216, g: 0.38039216, b: 0.38039216, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5001,6 +5009,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946559542}
   m_CullTransparentMesh: 1
+--- !u!114 &1946559547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946559542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f60571b2963cb34e9d074502026920f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TurnSystem: {fileID: 0}
+  buttonText: {fileID: 2037983160}
+  displayString: 
+  endTurnString: End Turn
+  waitString: Wait
 --- !u!1001 &1967845512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5254,7 +5279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -72,7 +72,7 @@ public class DeckManager : MonoBehaviour
         for (int i = 0; i < x; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), handCardTag);
+            CardSpawner.CreateCard(CardSpawner.GetCard(deck), handCardTag);
         }
 
         //aimanager knowledge that it was drawn

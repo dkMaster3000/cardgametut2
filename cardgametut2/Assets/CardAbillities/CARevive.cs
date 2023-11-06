@@ -13,8 +13,6 @@ public class CARevive : CardAbillity
 
     }
 
-
-
     public override void Executable(GameObject gameObjectToInteract)
     {
         GraveYardManager = gameObjectToInteract.GetComponent<GraveYardManager>();

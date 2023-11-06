@@ -11,6 +11,8 @@ public class CardSpawner : MonoBehaviour
     public static GameObject PlayerPlayArea;
     public static GameObject CardDisplay;
 
+    public static GameObject CardToHand;
+
     public enum CardTags
     {
         OpponentPlayedCard, PlayedCard, PlayerHandCard, OpponentHandCard, GraveYardCard
@@ -27,6 +29,8 @@ public class CardSpawner : MonoBehaviour
         OpponentHand = GameObject.Find("OpponentHand");
         OpponentPlayArea = GameObject.Find("OpponentPlayArea");
         PlayerPlayArea = GameObject.Find("PlayerPlayArea");
+
+        CardToHand = Resources.Load("Prefabs/CardToHand") as GameObject;
     }
 
     public static Card GetCard(List<Card> Deck)
@@ -36,9 +40,9 @@ public class CardSpawner : MonoBehaviour
         return cardToReturn;
     }
 
-    public static GameObject CreateCard(GameObject CardPrefabToInstatiate, Card CardData, CardTags CardTag)
+    public static GameObject CreateCard(Card CardData, CardTags CardTag)
     {
-        GameObject newCardObject = Instantiate(CardPrefabToInstatiate);
+        GameObject newCardObject = Instantiate(CardToHand);
         ThisCard newCard = newCardObject.GetComponent<ThisCard>();
 
         newCardObject.tag = GetStringFromCardTags(CardTag);

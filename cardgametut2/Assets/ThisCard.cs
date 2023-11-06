@@ -311,13 +311,19 @@ public class ThisCard : MonoBehaviour
     {
         if(GameState.targetingGraveYard == true)
         {
-            CardTags newCardTag = CardTags.PlayedCard;
-            gameObject.tag = CardSpawner.GetStringFromCardTags(newCardTag);
-            gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, CardSpawner.GetLocationFromCardTags(newCardTag));
-            summoned = true;
-            dead = false;
+            //CardTags newCardTag = CardTags.PlayedCard;
+            //gameObject.tag = CardSpawner.GetStringFromCardTags(newCardTag);
+            //gameObject.GetComponent<MoveCard>().MoveToPosition(gameObject, CardSpawner.GetLocationFromCardTags(newCardTag));
+            //summoned = true;
+            //dead = false;
+
+
+            CardSpawner.CreateCard(cardData, CardTags.PlayedCard);
+
+            Debug.Log("card universalid: " + cardData.universalCardID);
 
             PlayerGraveYardManager.RemoveByUniversalCardID(cardData.universalCardID);
+            OpponentGraveYardManager.RemoveByUniversalCardID(cardData.universalCardID);
 
             GameState.targetingGraveYard = false;
             GYVManager = GameObject.Find("GraveYardViewer").GetComponent<GYVManager>();
