@@ -14,15 +14,17 @@ public class HPManager : MonoBehaviour
     public Image Health;
 
     public GameState GameState;
+    public EndGameManager EndGameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
         GameState = GameObject.Find("GameState").GetComponent<GameState>();
+        EndGameManager = GameObject.Find("GameState").GetComponent<EndGameManager>();
 
         maxHP = 20;
-        currentHP = 20;
+        currentHP = 1;
 
         UpdateText();
     }
@@ -31,6 +33,11 @@ public class HPManager : MonoBehaviour
     {
         currentHP -= damage;
         UpdateText();
+
+        if(currentHP <= 0)
+        {
+            EndGameManager.EndGame();
+        }
     }
 
     public void Heal(int amount)
