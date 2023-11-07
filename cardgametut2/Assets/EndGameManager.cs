@@ -22,6 +22,8 @@ public class EndGameManager : MonoBehaviour
     public string storingWin = "storingWin";
     public string storingLoose = "storingLoose";
 
+    public bool isGameEnd = false;
+
 
     void Start()
     {
@@ -35,24 +37,29 @@ public class EndGameManager : MonoBehaviour
 
     public void EndGame()
     {
-        EndGameScreen.SetActive(true);
+        if(!isGameEnd)
+        {
+            isGameEnd = true;
 
-        if (PlayerHP.currentHP <= 0)
-        {
-            result = "You Lose!";
-            storedLosts++;
-            PlayerPrefs.SetInt(storingLoose, storedLosts);
-        } else
-        {
-            result = "You Win!";
-            storedWins++;
-            PlayerPrefs.SetInt(storingWin, storedWins);
+            EndGameScreen.SetActive(true);
+
+            if (PlayerHP.currentHP <= 0)
+            {
+                result = "You Lose!";
+                storedLosts++;
+                PlayerPrefs.SetInt(storingLoose, storedLosts);
+            }
+            else
+            {
+                result = "You Win!";
+                storedWins++;
+                PlayerPrefs.SetInt(storingWin, storedWins);
+            }
+
+            resultText.text = result;
+            losesText.text = "Lost: " + storedLosts;
+            winsText.text = "Won: " + storedWins;
         }
-
-        resultText.text = result;
-        losesText.text = "Lost: " + storedLosts;
-        winsText.text = "Won: " + storedWins;
-
     }
 
     public void CloseGame()
