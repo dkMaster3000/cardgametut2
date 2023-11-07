@@ -169,8 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winsText: {fileID: 1760972706}
   losesText: {fileID: 1900893619}
-  storedWins: 0
-  storedLosts: 0
   storingWin: storingWin
   storingLoose: storingLoose
 --- !u!1 &382213351
@@ -243,7 +241,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLay
+  m_Text: Play
 --- !u!222 &382213354
 CanvasRenderer:
   m_ObjectHideFlags: 0

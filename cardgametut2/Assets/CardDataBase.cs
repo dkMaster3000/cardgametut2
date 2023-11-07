@@ -5,12 +5,15 @@ using static Card;
 
 public class CardDataBase : MonoBehaviour
 {
-   
-    public static List<Card> cardList = new List<Card>();
+
+    public static List<Card> cardList;
 
 
     void Awake()
     {
+        //to reset after sceneload
+        cardList = new List<Card>();
+
         cardList.Add(new Card(0, "None", 0, 0, 0, Resources.Load<Sprite>("0"), CardSpawner.CardColors.None, new CardAbillity[]{ new CADraw(0) }));
         cardList.Add(new Card(1, "Ingeneer", 3, 1, 1, Resources.Load<Sprite>("1"), CardSpawner.CardColors.Green, new CardAbillity[] { new CADraw(2) }));
         cardList.Add(new Card(2, "Mayor", 3, 3, 3, Resources.Load<Sprite>("2"), CardSpawner.CardColors.Red, new CardAbillity[] { new CAAddMana(1) }));

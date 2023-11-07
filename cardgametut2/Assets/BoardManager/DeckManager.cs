@@ -64,10 +64,12 @@ public class DeckManager : MonoBehaviour
 
     IEnumerator Draw(int x)
     {
-        for (int i = 0; i < x; i++)
-        {
-            yield return new WaitForSeconds(0.1f);
-            CardSpawner.CreateCardTo(CardSpawner.GetCard(deck), handCardTag);
+        if(deck.Count >= x) {
+            for (int i = 0; i < x; i++)
+            {
+                yield return new WaitForSeconds(0.1f);
+                CardSpawner.CreateCardTo(CardSpawner.GetCard(deck), handCardTag);
+            }
         }
 
         //aimanager knowledge that it was drawn
@@ -93,7 +95,7 @@ public class DeckManager : MonoBehaviour
         {
             cardInDeck3.SetActive(false);
         }
-        if (deck.Count < 5)
+        if (deck.Count == 0)
         {
             cardInDeck4.SetActive(false);
         }

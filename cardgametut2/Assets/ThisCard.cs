@@ -237,6 +237,8 @@ public class ThisCard : MonoBehaviour
         if (!summoned || !canAttack) return;
         targeting = true;
         GameState.targeting = true;
+        Arrow.Show();
+        Arrow.startPoint = transform.position;
         UpdateOutline();
     }
 
@@ -246,6 +248,7 @@ public class ThisCard : MonoBehaviour
         if (!summoned || !canAttack) return;
         targeting = false;
         GameState.targeting = false;
+        Arrow.Hide();
         UpdateOutline();
     }
 
@@ -272,6 +275,7 @@ public class ThisCard : MonoBehaviour
                 targeting = false;
                 GameState.targeting = false;
                 canAttack = false;
+                Arrow.Hide();
                 UpdateOutline();
             }
 

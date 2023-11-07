@@ -7,6 +7,11 @@ using static TurnSystem;
 
 public class AIManager : MonoBehaviour
 {
+    /*
+     After Summon and drawing cards through effect
+     Ai doesn't reevaluate if it can play more cards
+     Fix for the next game     
+     */
     //external objects
     public HandManager OpponentHandManager;
 
