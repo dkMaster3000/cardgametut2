@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 442695092046396552}
   - component: {fileID: -4805728513713870281}
   - component: {fileID: -5674861068119361548}
+  - component: {fileID: -6837140520285622244}
   - component: {fileID: -174418085903366463}
   - component: {fileID: 3454320585389546860}
   - component: {fileID: -4818668714853560224}
@@ -203,10 +204,7 @@ MonoBehaviour:
   isPlayerCard: 1
   handCardTag: 2
   PlayerGraveYard: {fileID: 0}
-  OpponentGraveYard: {fileID: 0}
   PlayerGraveYardManager: {fileID: 0}
-  OpponentGraveYardManager: {fileID: 0}
-  GYVManager: {fileID: 0}
   ManaObject: {fileID: 0}
   ManaManager: {fileID: 0}
   TurnSystem: {fileID: 0}
@@ -281,6 +279,19 @@ MonoBehaviour:
   PlayerGraveYard: {fileID: 0}
   PlayerGraveYardManager: {fileID: 0}
   GYVManager: {fileID: 0}
+--- !u!114 &-6837140520285622244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808656491525979790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9201ce9a8d823478427d3d8246b642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 0}
 --- !u!114 &-174418085903366463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +393,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: -6837140520285622244}
+          m_TargetAssemblyTypeName: ZoomCard, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -389,6 +412,18 @@ MonoBehaviour:
         - m_Target: {fileID: 6548727987383420739}
           m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
           m_MethodName: UntargetCard
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: -6837140520285622244}
+          m_TargetAssemblyTypeName: ZoomCard, Assembly-CSharp
+          m_MethodName: OnHoverExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

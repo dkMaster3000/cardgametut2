@@ -87,9 +87,16 @@ public class CardSpawner : MonoBehaviour
 
         newCard.frame.GetComponent<Image>().color = GetCardColor(CardData.color);
 
-        newCardObject.GetComponent<MoveCard>().MoveToPosition(newCardObject, GetLocationFromCardTags(CardTag));
+        //newCardObject.GetComponent<MoveCard>().MoveToPosition(newCardObject, GetLocationFromCardTags(CardTag));
 
         return newCardObject;
+    }
+
+    public static void CreateCardTo(Card CardData, CardTags CardTag)
+    {
+        GameObject newCardObject = CreateCard(CardData, CardTag);
+
+        newCardObject.GetComponent<MoveCard>().MoveToPosition(newCardObject, GetLocationFromCardTags(CardTag));
     }
 
     public static Color32 GetCardColor(CardColors cardColor)

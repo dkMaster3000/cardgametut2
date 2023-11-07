@@ -103,9 +103,6 @@ public class AIManager : MonoBehaviour
         if (preparedCards != null )
         {
             //cards are summoned and can attack
-
-            
-
             foreach (ThisCard card in preparedCards)
             {
                 yield return new WaitForSeconds(0.5f);

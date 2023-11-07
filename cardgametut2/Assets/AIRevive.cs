@@ -26,7 +26,7 @@ public class AIRevive : MonoBehaviour
             //for simlicity revive the first card
             Card firstCardInGraveYard = graveYardCards[0];
 
-            CardSpawner.CreateCard(firstCardInGraveYard, CardTags.OpponentPlayedCard);
+            CardSpawner.CreateCardTo(firstCardInGraveYard, CardTags.OpponentPlayedCard);
 
             OpponentGraveYardManager.RemoveByUniversalCardID(firstCardInGraveYard.universalCardID);
         }

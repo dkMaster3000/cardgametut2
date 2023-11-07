@@ -1723,6 +1723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363648778}
   - component: {fileID: 363648779}
+  - component: {fileID: 363648780}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -1769,6 +1770,20 @@ MonoBehaviour:
   battlePhase: 0
   cardIsAttacking: 0
   endPhase: 0
+--- !u!114 &363648780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363648777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cbbec9350400a42a9cc951dfda24da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpponentPlayArea: {fileID: 0}
+  OpponentGraveYardManager: {fileID: 0}
 --- !u!1 &365306929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 808656491525979790, guid: 6d9d2471e766a2142a07ad3c62ac0160, type: 3}

@@ -138,7 +138,8 @@ public class ThisCard : MonoBehaviour
     {
         ManaManager.PayCost(cost);
         summoned = true;
-        if(cardAbillities.Length > 0)
+        tag = GetStringFromCardTags(CardTags.PlayedCard);
+        if (cardAbillities.Length > 0)
         {
             foreach (CardAbillity cardAbillity in cardAbillities)
             {
@@ -282,20 +283,30 @@ public class ThisCard : MonoBehaviour
     //on pointer enter
     public void TargetCard()
     {
-        if(transform.parent.name == "OpponentPlayArea")
+        //only for player
+        if(TurnSystem.isPlayerTurn == true)
         {
-            GameState.LockTarget(gameObject);
+            if (transform.parent.name == "OpponentPlayArea")
+            {
+                GameState.LockTarget(gameObject);
+            }
         }
+
         
     }
 
     //on pointer exit
     public void UntargetCard()
     {
-        if (transform.parent.name == "OpponentPlayArea")
+        //only for player
+        if (TurnSystem.isPlayerTurn == true)
         {
-            GameState.LockTarget(null);
+            if (transform.parent.name == "OpponentPlayArea")
+            {
+                GameState.LockTarget(null);
+            }
         }
+
     }
 
     //-------------------------------------AI-------------------------------------

@@ -49,7 +49,7 @@ public class GYVManager : MonoBehaviour
         int cardCount = cardsToDisplay.Count;
         for(int i = 0; i < cardCount; i++)
         {
-            CardSpawner.CreateCard(CardSpawner.GetCard(cardsToDisplay), CardTags.GraveYardCard);
+            CardSpawner.CreateCardTo(CardSpawner.GetCard(cardsToDisplay), CardTags.GraveYardCard);
         }
     }
 }

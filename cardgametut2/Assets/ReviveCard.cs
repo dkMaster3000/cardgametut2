@@ -31,7 +31,7 @@ public class ReviveCard : MonoBehaviour
     {
         if (GameState.targetingGraveYard == true)
         {
-            CardSpawner.CreateCard(cardData, CardTags.PlayedCard);
+            CardSpawner.CreateCardTo(cardData, CardTags.PlayedCard);
 
             PlayerGraveYardManager.RemoveByUniversalCardID(cardData.universalCardID);
 
