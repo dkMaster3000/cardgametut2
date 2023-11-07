@@ -24,7 +24,7 @@ public class HPManager : MonoBehaviour
         EndGameManager = GameObject.Find("GameState").GetComponent<EndGameManager>();
 
         maxHP = 20;
-        currentHP = 1;
+        currentHP = 20;
 
         UpdateText();
     }

@@ -53,11 +53,6 @@ public class DeckManager : MonoBehaviour
         }
 
         DrawCards(5);
-
-        //For Test purpouse: create minions for Opponent 
-        //CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
-        //CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
-        //CardSpawner.CreateCard(CardToHand, CardSpawner.GetCard(deck), CardTags.OpponentPlayedCard);
     }
 
     public void DrawCards(int cardsToDraw)

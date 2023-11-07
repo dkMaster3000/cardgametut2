@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndGameManager : MonoBehaviour
@@ -52,5 +53,15 @@ public class EndGameManager : MonoBehaviour
         losesText.text = "Lost: " + storedLosts;
         winsText.text = "Won: " + storedWins;
 
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
