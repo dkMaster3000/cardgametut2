@@ -55,8 +55,7 @@ public class TurnSystem : MonoBehaviour
 
         AIManager = GameObject.Find("AI").GetComponent<AIManager>();
 
-        //isPlayerTurn = Random.value > 0.5f;
-        isPlayerTurn = false;
+        isPlayerTurn = Random.value > 0.5f;
         playerTurn = isPlayerTurn ? 1 : 0;
         opponentTurn = isPlayerTurn ? 0: 1;
 

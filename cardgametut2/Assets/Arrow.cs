@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    public float xAngle, yAngle, zAngle;
 
     public static GameObject[] points;
 
     public GameObject point;
     public GameObject arrow;
 
-    public static int numberOfPoints = 30;
+    public static int numberOfPoints = 15;
 
-    public static Vector2 startPoint;
+    public static Vector3 startPoint;
 
-    public float distance;
+    public Vector3 direction;
+    public static Vector3 AITarget;
 
-    public Vector2 direction;
-
+    /*
+     * right now it is just hidden and shown
+     * in future it is better to instatiate it when in use    
+     */
 
     // Start is called before the first frame update
     void Start()
@@ -42,18 +46,24 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startPoint != null)
+
+     if (TurnSystem.isPlayerTurn)
         {
-            for (int i = 0; i < numberOfPoints; i++)
-            {
-
-                direction = Input.mousePosition;
-
-                points[i].transform.position = Vector2.Lerp(startPoint, direction, i * 0.1f);          
-
-                distance = Vector2.Distance(startPoint, direction);
-            }
+            zAngle = (startPoint.x - Input.mousePosition.x) / 10;
+            direction = Input.mousePosition;
         }
+        else
+        {
+            zAngle = (-(startPoint.x - Input.mousePosition.x) / 10) + 180;
+            direction = AITarget;
+        }
+
+        for (int i = 0; i < numberOfPoints; i++)
+        {
+
+            points[i].transform.position = Vector3.Slerp(startPoint, direction, i * 0.1f);
+        }
+        points[numberOfPoints - 1].transform.rotation = Quaternion.Euler(new Vector3(0, 0, zAngle));
 
     }
 

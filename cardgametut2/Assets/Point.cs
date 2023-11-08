@@ -14,10 +14,4 @@ public class Point : MonoBehaviour
         transform.SetParent(canvas.transform);
         transform.localScale = Vector3.one;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

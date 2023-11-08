@@ -138,17 +138,23 @@ public class AIManager : MonoBehaviour
         //all cards from player
         ThisCard[] playerPlayedCards = PlayerPlayArea.GetComponentsInChildren<ThisCard>();
 
+        GameObject Target = null;
+
         //do attack
         if (playerPlayedCards.Length > 0)
         {
             //attack player cards (in order to simplify
-            attackingCard.Target = PlayerPlayArea.transform.GetChild(0).gameObject;
+            Target = PlayerPlayArea.transform.GetChild(0).gameObject;
         }
         else
         {
             //attack player
-            attackingCard.Target = PlayerHPObject;
+            Target = PlayerHPObject;
         }
+        attackingCard.Target = Target;
+        Arrow.AITarget = Target.transform.position;
+
+        yield return new WaitForSeconds(0.5f);
 
         attackingCard.Attack();
 
